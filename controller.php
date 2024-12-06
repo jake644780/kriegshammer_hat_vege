@@ -1,7 +1,7 @@
 <?php
 require 'vendor/autoload.php';
 use phpseclib3\Net\SSH2;
-require("fun.php");
+require("back/fun.php");
 
 /*
 commands:
@@ -16,8 +16,44 @@ commands:
 
 session_start();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $action = $_POST['action'] ?? '';
+
+
+if(isset($_POST["action"])){
+
+    if(isset($_POST["login"])){
+        // Process the login action
+        $ip = filter_var(trim($_POST["ip"]), FILTER_VALIDATE_IP);
+        $user = htmlspecialchars(trim($_POST["user"]));
+        $pass = htmlspecialchars(trim($_POST["pass"]));
+
+        if (!$ip || empty($user) || empty($pass)) {
+            // Redirect back with error if inputs are invalid
+            header("Location: error.php?somethingisempty=1");
+            exit;
+        }
+
+        try {
+            $ssh = new SSH2($ip);
+            if ($ssh->login($user, $pass)) {
+                // Store session securely
+                $_SESSION['ip'] = $ip;
+                $_SESSION['user'] = $user;
+                $_SESSION["pass"] = $pass;
+                // Redirect to menu
+                header("Location: menu.php");
+                exit;
+            } else {
+                header("Location: back/error.php?auth=1");
+                exit;
+            }
+        } catch (Exception $e) {
+            header("Location: back/error.php?somethingisfucked=1");
+            exit;
+        }
+
+    }
+}
+/*
 
     switch ($action) {
         case 'login':
@@ -53,14 +89,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             break;
 //<!-------------------------------------------------------------------------------------------------------->        
-case "show_running":
+        case "show_running":
             $ip = $_SESSION["ip"];
             $user = $_SESSION["user"];
             $pass = $_SESSION["pass"];
 
             try {
                $ssh = new SSH2($_SESSION["ip"]);
-               if($ssh->login($user, $pass));
+               if($ssh->login($user, $pass)){
+                $ssh->exec("show running-config");
+               };
                 
             }catch (Exception $e){
                 
@@ -86,6 +124,7 @@ case "show_running":
     header("Location: login.php");
     exit;
 }
+    */
 
 
 /*
