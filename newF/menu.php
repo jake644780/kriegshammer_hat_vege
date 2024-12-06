@@ -1,32 +1,15 @@
 <?php
 
-session_start();
-
-require 'vendor/autoload.php';
-
 use phpseclib3\Net\SSH2;
-$ssh = new SSH2($_SESSION["ip"]);
-if ($ssh->login($_SESSION["user"],$_SESSION["pass"])){
-    $ssh->write("enable\n");
-    $ssh->write($_SESSION["pass"] . "\n");
-    //getting ports
-    $ssh->write("sh ip int brief\n");
-    $out = $ssh->read();
-    //
-    $splitInTwo = explode("sh ip int brief", $out);
-    $interfacesWithEnd = explode("\n", $splitInTwo[1]);
-    $ports = [];
-    //starting at 2 and ending 1 before to not add lines around ports
-    for($i = 2; $i < sizeof($interfacesWithEnd)-1; $i++){
-            $line = explode(" ", $interfacesWithEnd[$i]);
-            $ports[] = $line[0];
-    }
 
-    
-}else{
-    echo "no bueno";
-}
-    
+    session_start();
+
+    $ssh = new SSH2($_SESSION["ip"]);
+    $ssh->write("enable " . $_SESSION["pass"] . "\n");
+    $ssh->write("ip int brief\n");
+    $out = $ssh->read();
+    echo nl2br(htmlspecialchars($out));
+
 
 ?>
 
