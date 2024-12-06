@@ -5,27 +5,39 @@ session_start();
 require 'vendor/autoload.php';
 
 use phpseclib3\Net\SSH2;
-$ssh = new SSH2($_SESSION["ip"]);
-if ($ssh->login($_SESSION["user"],$_SESSION["pass"])){
-    $ssh->write("enable\n");
-    $ssh->write($_SESSION["pass"] . "\n");
-    //getting ports
-    $ssh->write("sh ip int brief\n");
-    $out = $ssh->read();
-    //
-    $splitInTwo = explode("sh ip int brief", $out);
-    $interfacesWithEnd = explode("\n", $splitInTwo[1]);
-    $ports = [];
-    //starting at 2 and ending 1 before to not add lines around ports
-    for($i = 2; $i < sizeof($interfacesWithEnd)-1; $i++){
-            $line = explode(" ", $interfacesWithEnd[$i]);
-            $ports[] = $line[0];
-    }
 
-    
-}else{
-    echo "no bueno";
-}
+echo $_SESSION["ip"];
+echo "<br>";
+echo $_SESSION["user"];
+echo "<br>";
+echo $_SESSION["pass"];
+
+
+$ssh = new SSH2($_SESSION["ip"]);
+
+
+
+    if ($ssh->login($_SESSION["user"], $_SESSION["pass"])){
+        $ssh->write("enable\n");
+        $ssh->write($_SESSION["pass"] . "\n");
+        //getting ports
+        $ssh->write("sh ip int brief\n");
+        $out = $ssh->read();
+        //
+        $splitInTwo = explode("sh ip int brief", $out);
+        $interfacesWithEnd = explode("\n", $splitInTwo[1]);
+        $ports = [];
+        //starting at 2 and ending 1 before to not add lines around ports
+        for($i = 2; $i < sizeof($interfacesWithEnd)-1; $i++){
+                $line = explode(" ", $interfacesWithEnd[$i]);
+                $ports[] = $line[0];
+                $isGood = 1;
+        }
+    }else{
+        echo "no";
+    }
+        
+
     
 
 ?>
@@ -36,7 +48,6 @@ if ($ssh->login($_SESSION["user"],$_SESSION["pass"])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Új Oldal</title>
-    <link rel="stylesheet" href="styles/menuCSS.css">
 </head>
 <body class="banan">
     <!-- Két részre osztott felső sáv -->
@@ -335,8 +346,7 @@ if ($ssh->login($_SESSION["user"],$_SESSION["pass"])){
     
     
     </script>
-    
-    <style>
-    .content{
-        display: none;
-    }
+<?php
+   require("menuCSS.php");
+
+?>

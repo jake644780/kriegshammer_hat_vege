@@ -64,7 +64,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-image: url("images/galaxy3.jpg");
+    background-image: url("../images/galaxy3.jpg");
     color: white;
     font-size: 24px;
     font-weight: bold;
@@ -118,7 +118,7 @@
 }
 
 .ip-title {
-    background-image: url("images/galaxy.jpg");
+    background-image: url("../images/galaxy.jpg");
     color: white;
     font-size: 22px;
     font-weight: bold;
@@ -223,7 +223,7 @@
 }
 
 .k-title {
-    background-image: url("images/cica.jpg");
+    background-image: url("../images/cica.jpg");
     color: white;
     text-align: center;
     margin-bottom: 20px;
@@ -236,7 +236,7 @@
 
 
 .banan{
-    background-image: url("images/galaxy_seamless.avif");
+    background-image: url("../images/galaxy_seamless.avif");
 }
 
 

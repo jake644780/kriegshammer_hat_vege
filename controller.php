@@ -23,36 +23,46 @@ echo $_SESSION["ip"];
 if (isset($_POST["action"])) {
 
     if (isset($_POST["login"])) {
-        // Process the login action
-        $ip = filter_var(trim($_POST["ip"]), FILTER_VALIDATE_IP);
-        $user = htmlspecialchars(trim($_POST["user"]));
-        $pass = htmlspecialchars(trim($_POST["pass"]));
-
-        if (!$ip || empty($user) || empty($pass)) {
-            // Redirect back with error if inputs are invalid
-            header("Location: error.php?somethingisempty=1");
-            exit;
-        }
-
-        try {
-            $ssh = new SSH2($ip);
-            if ($ssh->login($user, $pass)) {
-                // Store session securely
-                $_SESSION['ip'] = $ip;
-                $_SESSION['user'] = $user;
-                $_SESSION["pass"] = $pass;
-                // Redirect to menu
-                header("Location: menu.php");
-                exit;
-            } else {
-                header("Location: back/error.php?auth=1");
+        $max = 5;
+        $delay = 1;
+        $current = 0;
+    
+        while ($current < $max) {
+            $ip = filter_var(trim($_POST["ip"]), FILTER_VALIDATE_IP);
+            $user = htmlspecialchars(trim($_POST["user"]));
+            $pass = htmlspecialchars(trim($_POST["pass"]));
+    
+            if (!$ip || empty($user) || empty($pass)) {
+                header("Location: back/error.php?error=invalid_input");
                 exit;
             }
-        } catch (Exception $e) {
-            header("Location: back/error.php?somethingisfucked=1");
-            exit;
+    
+            try {
+                $ssh = new SSH2($ip);
+    
+                if ($ssh->login($user, $pass)) {
+                    $_SESSION['ip'] = $ip;
+                    $_SESSION['user'] = $user;
+                    $_SESSION["pass"] = $pass;
+                    header("Location: menu.php");
+                    exit;
+                } else {
+                    header("Location: back/error.php?error=login_failed");
+                    exit;
+                }
+            } catch (Exception $e) {
+                if ($current < $max - 1) {
+                    sleep($delay);
+                } else {
+                    header("Location: back/error.php?error=connection_failed");
+                    exit;
+                }
+            }
+    
+            $current++;
         }
     }
+    
     if (isset($_POST["show-running"])){
         $ip = $_SESSION["ip"];
         $user = $_SESSION["user"];
