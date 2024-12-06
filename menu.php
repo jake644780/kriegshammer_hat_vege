@@ -95,16 +95,17 @@ if ($ssh->login($_SESSION["user"],$_SESSION["pass"])){
     <div class="content-box-wrapper">
         <!-- Középső doboz -->
         <div class="center-box">
-            <label for="text1" class="text-label">port</label>
-            <input type="text" id="text1" class="text-box">
+        <form action="controller.php" method="POST">
+        <label for="ports">válassz ki egy portot:</label>
+        <select id="ports" class="dropdown" name ="port">;
+           <?php
+           for($i = 0; $i < sizeof($ports);$i++) echo '<option value="'. $ports[$i] .'">'. $ports[$i] .'</option>';
+           ?>
+        </select>
+    </form>
 
-            <label for="text2" class="text-label">Szöveg:</label>
-            <input type="text" id="text2" class="text-box"> 
-
-            <label for="text3" class="text-label">Szöveg:</label>
-            <input type="text" id="text3" class="text-box">
-
-            <button class="continue-button">Tovább</button>
+        <input type="hidden" name="ip_config">
+        <input type="submit" class="continue-button" name="action" value="Tovább">
         </div>
 
         <!-- IP beállítás doboz -->
@@ -274,7 +275,6 @@ if ($ssh->login($_SESSION["user"],$_SESSION["pass"])){
     </div>
 </div>
 <!--------------------------------------------------------------------------------------->
-
 
 <!--CUSTOM-->
 <div class="content" id="content7">
