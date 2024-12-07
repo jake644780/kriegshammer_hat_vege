@@ -57,6 +57,7 @@ if (isset($_POST["show_running"])){
         $ssh->write($_SESSION["pass"] . "\n");
         $ssh->write("terminal len 0\n");
         $ssh->write("show running-config\n");
+        $ssh->write("show running-config\n");
         $out = $ssh->read();
         file_put_contents('output.txt', $out);
         //echo nl2br(htmlspecialchars($out));

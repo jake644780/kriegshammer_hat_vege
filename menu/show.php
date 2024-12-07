@@ -15,7 +15,7 @@
 
                     if (!($out === "")){
                         echo '<div class="k-box"><div class="k-title">Kimenet</div><p>';
-                        $snip = explode("show running-config\n", $out);
+                        $snip = explode("show running-config", $out);
                         echo nl2br(htmlspecialchars($snip[1]));
                         echo '</p></div>';
 

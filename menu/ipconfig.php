@@ -6,7 +6,7 @@
         <label for="ports" class="text-label">válassz ki egy portot:</label>
         <select id="ports" class="dropdown text-box" name ="port">;
             <?php
-            for($i = 0; $i < sizeof($ports);$i++) echo '<option value="'. $ports[$i] .'">'. $ports[$i] .'</option>';
+            for($i = 0; $i < sizeof($ports);$i++) echo '<option name="'. $ports[$i] .'" value="'. $ports[$i] .'">'. $ports[$i] .'</option>';
            ?>
         </select>
         <br>
