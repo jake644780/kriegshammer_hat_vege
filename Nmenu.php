@@ -5,11 +5,28 @@ require 'vendor/autoload.php';
 
 use phpseclib3\Net\SSH2;
 
-
-
-
+$ssh = new SSH2($_POST["ip"]);
+if ($ssh->login($_POST["user"], $_POST["pass"])){
+    echo "yes";
+    $ssh->write("enable\n");
+    $ssh->write($_POST["pass"] . "\n");
+    if ($ssh->write("sh ip int br\n")) echo "br\n";
+    $out = $ssh->read();
+    echo $out;
+    $split1 = explode("sh ip int br", $out);
+    $split2 = explode("\n", $split1[1]);
+    $ports = [];
+    for($i = 2; $i < sizeof($split2)-1;$i++){
+        $line = explode(" ", $split2[$i]);
+        $ports[] = $line[0];
+    }
+        echo (implode(",", $ports));
+        
+}else {
+    echo "no";
+    exit;
+}
 ?>
-
 
 
 <!DOCTYPE html>
@@ -46,7 +63,7 @@ use phpseclib3\Net\SSH2;
             <!-- Középső doboz -->
             <div class="center-box">
             <form action="controller.php" method="POST">
-                <label for="text1" class="text-label">show running</label>
+                <label for="text1" class="text-label">beállítások megtekintése</label>
                 <br>
                 <input type="hidden" name="show-running">
                 <input type="submit" class="continue-button" name="action" value="Tovább">
@@ -54,17 +71,21 @@ use phpseclib3\Net\SSH2;
             </div>
             <!-- Új IP beállítás doboz -->
             <div class="ip-settings-box">
-                <div class="ip-title">Ip beállítás</div>
-                <div class="ip-textbox">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod velit facere obcaecati amet? Unde earum eos reiciendis mollitia quod animi. Magni, consectetur corrupti. Alias, deleniti distinctio doloremque illum molestias fuga.</div>
+                <div class="ip-title">show running-config</div>
+                <div class="ip-textbox">
+                Ez a parancs a router vagy switch konfigurációs fájlja aktuális állapotának megjelenítésére szolgál. A futó konfiguráció tartalmazza az összes aktív beállítást, amely jelenleg működik az eszközön.
+                <br>
+                Ez a parancs megjeleníti az eszköz teljes, jelenleg alkalmazott konfigurációját, beleértve a hálózati beállításokat, interfészeket, routing táblákat és más konfigurációkat.
+                </div>
             </div>
             <div class="k-box">
                 <div class="k-title">Kommand szintaxisa</div>
-                <p>alma</p>
+                <p>show running-config</p>
             </div>
     
             <div class="k-box">
                 <div class="k-title">Kimenet</div>
-                <p>BARNA CUKIIIIIII</p>
+                <p></p>
             </div>
         </div>
         </div>
@@ -286,26 +307,13 @@ use phpseclib3\Net\SSH2;
 </html>
 
 
-<script>
-    function showDiv(divNumber) {
-        // Get all div elements with the class "content"
-        const divs = document.querySelectorAll('.content');
-        
-        // Hide all divs
-        divs.forEach(div => {
-            div.style.display = 'none';
-        });
-    
-        // Show the selected div
-        const selectedDiv = document.getElementById(`content${divNumber}`);
-        if (selectedDiv) {
-            selectedDiv.style.display = 'flex';
-        }
-    }
-    
-    
-    </script>
 <?php
-   require("menuCSS.php");
+
+require("menuCSS.php");
+
+?>
+
+<?php
+require("controller.php");
 
 ?>
