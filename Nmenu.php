@@ -58,251 +58,33 @@ if ($ssh->login($_POST["user"], $_POST["pass"])){
 
     <!-- Tartalom helye -->
 <!--SHOW RUNNING------------------------------------------------------------------------------------------>
-<div class="content" id="content1">
-        <div class="content-box-wrapper">
-            <!-- Középső doboz -->
-            <div class="center-box">
-            <form action="controller.php" method="POST">
-                <label for="text1" class="text-label">beállítások megtekintése</label>
-                <br>
-                <input type="hidden" name="show-running">
-                <input type="submit" class="continue-button" name="action" value="Tovább">
-            </form>
-            </div>
-            <!-- Új IP beállítás doboz -->
-            <div class="ip-settings-box">
-                <div class="ip-title">show running-config</div>
-                <div class="ip-textbox">
-                Ez a parancs a router vagy switch konfigurációs fájlja aktuális állapotának megjelenítésére szolgál. A futó konfiguráció tartalmazza az összes aktív beállítást, amely jelenleg működik az eszközön.
-                <br>
-                Ez a parancs megjeleníti az eszköz teljes, jelenleg alkalmazott konfigurációját, beleértve a hálózati beállításokat, interfészeket, routing táblákat és más konfigurációkat.
-                </div>
-            </div>
-            <div class="k-box">
-                <div class="k-title">Kommand szintaxisa</div>
-                <p>show running-config</p>
-            </div>
-    
-            <div class="k-box">
-                <div class="k-title">Kimenet</div>
-                <p></p>
-            </div>
-        </div>
-        </div>
-    </div>
+<?php
+require("menu/show.php");
+?>
 <!--IPCONFIG---------------------------------------------------------------------------------------------->
-<div class="content" id="content2">
-    <div class="content-box-wrapper">
-        <!-- Középső doboz -->
-        <div class="center-box">
-        <form action="controller.php" method="POST">
-        <label for="ports">válassz ki egy portot:</label>
-        <select id="ports" class="dropdown" name ="port">;
-           <?php
-           $ports = explode(" ", $_SESSION["ports"]);
-           for($i = 0; $i < sizeof($ports);$i++) echo '<option value="'. $ports[$i] .'">'. $ports[$i] .'</option>';
-           ?>
-        </select>
-    </form>
-
-        <input type="hidden" name="ip_config">
-        <input type="submit" class="continue-button" name="action" value="Tovább">
-        </div>
-
-        <!-- IP beállítás doboz -->
-        <div class="ip-settings-box">
-            <div class="ip-title">IP Beállítás</div>
-            <p class="ip-textbox"p>lololo</p>
-        </div>
-
-        <!-- Kommand szintaxisa doboz -->
-        <div class="k-box">
-            <div class="k-title">Kommand szintaxisa</div>
-            <p>alma</p>
-        </div>
-
-        <div class="k-box">
-            <div class="k-title">Kimenet</div>
-            <p>BARNA CUKIIIIIII</p>
-        </div>
-    </div>
-</div>
+<?php
+require("menu/ipconfig.php");
+?>
 <!--STATIC ROUTE------------------------------------------------------------------------------------------>
-<div class="content" id="content3">
-    <div class="content-box-wrapper">
-        <!-- Középső doboz -->
-        <div class="center-box">
-            <label for="text1" class="text-label">Szöveg:</label>
-            <input type="text" id="text1" class="text-box">
-
-            <label for="text2" class="text-label">Szöveg:</label>
-            <input type="text" id="text2" class="text-box">
-
-            <label for="text3" class="text-label">Szöveg:</label>
-            <input type="text" id="text3" class="text-box">
-
-            <button class="continue-button">Tovább</button>
-        </div>
-
-        <!-- IP beállítás doboz -->
-        <div class="ip-settings-box">
-            <div class="ip-title">IP Beállítás</div>
-            <p class="ip-textbox"p>lololo</p>
-        </div>
-
-        <!-- Kommand szintaxisa doboz -->
-        <div class="k-box">
-            <div class="k-title">Kommand szintaxisa</div>
-            <p>alma</p>
-        </div>
-
-        <div class="k-box">
-            <div class="k-title">Kimenet</div>
-            <p>BARNA CUKIIIIIII</p>
-        </div>
-    </div>
-</div>
+<?php
+require("menu/route.php");
+?>
 <!--TURN ON PORTS----------------------------------------------------------------------------------------->
-<div class="content" id="content4">
-    <div class="content-box-wrapper">
-        <!-- Középső doboz -->
-        <div class="center-box">
-            <label for="text1" class="text-label">Szöveg:</label>
-            <input type="text" id="text1" class="text-box">
-
-            <label for="text2" class="text-label">Szöveg:</label>
-            <input type="text" id="text2" class="text-box">
-
-            <label for="text3" class="text-label">Szöveg:</label>
-            <input type="text" id="text3" class="text-box">
-
-            <button class="continue-button">Tovább</button>
-        </div>
-
-        <!-- IP beállítás doboz -->
-        <div class="ip-settings-box">
-            <div class="ip-title">IP Beállítás</div>
-            <p class="ip-textbox"p>lololo</p>
-        </div>
-
-        <!-- Kommand szintaxisa doboz -->
-        <div class="k-box">
-            <div class="k-title">Kommand szintaxisa</div>
-            <p>alma</p>
-        </div>
-
-        <div class="k-box">
-            <div class="k-title">Kimenet</div>
-            <p>BARNA CUKIIIIIII</p>
-        </div>
-    </div>
-</div>
+<?php
+require("menu/port.php");
+?>
 <!--DHCP-------------------------------------------------------------------------------------------------->
-<div class="content" id="content5">
-    <div class="content-box-wrapper">
-        <!-- Középső doboz -->
-        <div class="center-box">
-            <label for="text1" class="text-label">Szöveg:</label>
-            <input type="text" id="text1" class="text-box">
-
-            <label for="text2" class="text-label">Szöveg:</label>
-            <input type="text" id="text2" class="text-box">
-
-            <label for="text3" class="text-label">Szöveg:</label>
-            <input type="text" id="text3" class="text-box">
-
-            <button class="continue-button">Tovább</button>
-        </div>
-
-        <!-- IP beállítás doboz -->
-        <div class="ip-settings-box">
-            <div class="ip-title">IP Beállítás</div>
-            <p class="ip-textbox"p>lololo</p>
-        </div>
-
-        <!-- Kommand szintaxisa doboz -->
-        <div class="k-box">
-            <div class="k-title">Kommand szintaxisa</div>
-            <p>alma</p>
-        </div>
-
-        <div class="k-box">
-            <div class="k-title">Kimenet</div>
-            <p>BARNA CUKIIIIIII</p>
-        </div>
-    </div>
-</div>
+<?php
+require("menu/dhcp.php");
+?>
 <!--EGYÉB------------------------------------------------------------------------------------------------->
-<div class="content" id="content6">
-    <div class="content-box-wrapper">
-        <!-- Középső doboz -->
-        <div class="center-box">
-            <label for="text1" class="text-label">Szöveg:</label>
-            <input type="text" id="text1" class="text-box">
-
-            <label for="text2" class="text-label">Szöveg:</label>
-            <input type="text" id="text2" class="text-box">
-
-            <label for="text3" class="text-label">Szöveg:</label>
-            <input type="text" id="text3" class="text-box">
-
-            <button class="continue-button">Tovább</button>
-        </div>
-
-        <!-- IP beállítás doboz -->
-        <div class="ip-settings-box">
-            <div class="ip-title">IP Beállítás</div>
-            <p class="ip-textbox"p>lololo</p>
-        </div>
-
-        <!-- Kommand szintaxisa doboz -->
-        <div class="k-box">
-            <div class="k-title">Kommand szintaxisa</div>
-            <p>alma</p>
-        </div>
-
-        <div class="k-box">
-            <div class="k-title">Kimenet</div>
-            <p>BARNA CUKIIIIIII</p>
-        </div>
-    </div>
-</div>
+<?php
+require("menu/egyeb.php");
+?>
 <!--CUSTOM------------------------------------------------------------------------------------------------>
-<div class="content" id="content7">
-    <div class="content-box-wrapper">
-        <!-- Középső doboz -->
-        <div class="center-box">
-            <label for="text1" class="text-label">Szöveg:</label>
-            <input type="text" id="text1" class="text-box">
-
-            <label for="text2" class="text-label">Szöveg:</label>
-            <input type="text" id="text2" class="text-box">
-
-            <label for="text3" class="text-label">Szöveg:</label>
-            <input type="text" id="text3" class="text-box">
-
-            <button class="continue-button">Tovább</button>
-        </div>
-
-        <!-- IP beállítás doboz -->
-        <div class="ip-settings-box">
-            <div class="ip-title">IP Beállítás</div>
-            <p class="ip-textbox"p>lololo</p>
-        </div>
-
-        <!-- Kommand szintaxisa doboz -->
-        <div class="k-box">
-            <div class="k-title">Kommand szintaxisa</div>
-            <p>alma</p>
-        </div>
-
-        <div class="k-box">
-            <div class="k-title">Kimenet</div>
-            <p>BARNA CUKIIIIIII</p>
-        </div>
-    </div>
-</div>
-
+<?php
+require("menu/custom.php");
+?>
 </body>
 </html>
 
