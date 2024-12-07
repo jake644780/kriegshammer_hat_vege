@@ -1,19 +1,6 @@
 <?php
-require 'vendor/autoload.php';
 
-use phpseclib3\Net\SSH2;
 
-require("back/fun.php");
-
-/*
-commands:
--sh ru
--ip config on port --> fetch ports
--static routing
--turn port state --> fetch ports
--dhcp pool config
--custom
-*/
 
 
 session_start();

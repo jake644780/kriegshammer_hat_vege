@@ -14,17 +14,7 @@
             <button class="continue-button">Tovább</button>
         </div>
 
-        <!-- IP beállítás doboz -->
-        <div class="ip-settings-box">
-            <div class="ip-title">IP Beállítás</div>
-            <p class="ip-textbox"p>lololo</p>
-        </div>
-
-        <!-- Kommand szintaxisa doboz -->
-        <div class="k-box">
-            <div class="k-title">Kommand szintaxisa</div>
-            <p>alma</p>
-        </div>
+      
 
         <div class="k-box">
             <div class="k-title">Kimenet</div>

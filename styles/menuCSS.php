@@ -231,7 +231,7 @@
         background-color: #000000;
         color: #ffffff;
         width: 100%;
-        height: 150px;
+        /*height: 150px;*/
         font-size: 16px;
         border: 2px solid #cccccc;
         border-radius: 8px;
