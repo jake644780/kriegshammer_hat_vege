@@ -1,11 +1,5 @@
 <?php
 
-session_start();
-
-require 'vendor/autoload.php';
-
-use phpseclib3\Net\SSH2;
-
 echo $_SESSION["ip"];
 echo "<br>";
 echo $_SESSION["user"];
@@ -13,7 +7,6 @@ echo "<br>";
 echo $_SESSION["pass"];
 
 
-$ssh = new SSH2($_SESSION["ip"]);
 
 
 
@@ -70,7 +63,7 @@ $ssh = new SSH2($_SESSION["ip"]);
     </div>
 
     <!-- Tartalom helye -->
-<!--SHOW RUNNING-->
+<!--SHOW RUNNING------------------------------------------------------------------------------------------>
 <div class="content" id="content1">
         <div class="content-box-wrapper">
             <!-- Középső doboz -->
@@ -99,9 +92,7 @@ $ssh = new SSH2($_SESSION["ip"]);
         </div>
         </div>
     </div>
-<!--------------------------------------------------------------------------------------->
-
-<!--IPCONFIG-->
+<!--IPCONFIG---------------------------------------------------------------------------------------------->
 <div class="content" id="content2">
     <div class="content-box-wrapper">
         <!-- Középső doboz -->
@@ -137,9 +128,7 @@ $ssh = new SSH2($_SESSION["ip"]);
         </div>
     </div>
 </div>
-<!--------------------------------------------------------------------------------------->
-
-<!--STATIC ROUTE-->
+<!--STATIC ROUTE------------------------------------------------------------------------------------------>
 <div class="content" id="content3">
     <div class="content-box-wrapper">
         <!-- Középső doboz -->
@@ -174,9 +163,7 @@ $ssh = new SSH2($_SESSION["ip"]);
         </div>
     </div>
 </div>
-<!--------------------------------------------------------------------------------------->
-
-<!--TURN ON PORTS-->
+<!--TURN ON PORTS----------------------------------------------------------------------------------------->
 <div class="content" id="content4">
     <div class="content-box-wrapper">
         <!-- Középső doboz -->
@@ -211,9 +198,7 @@ $ssh = new SSH2($_SESSION["ip"]);
         </div>
     </div>
 </div>
-<!--------------------------------------------------------------------------------------->
-
-<!--DHCP-->
+<!--DHCP-------------------------------------------------------------------------------------------------->
 <div class="content" id="content5">
     <div class="content-box-wrapper">
         <!-- Középső doboz -->
@@ -248,9 +233,7 @@ $ssh = new SSH2($_SESSION["ip"]);
         </div>
     </div>
 </div>
-<!--------------------------------------------------------------------------------------->
-
-<!--EGYÉB-->
+<!--EGYÉB------------------------------------------------------------------------------------------------->
 <div class="content" id="content6">
     <div class="content-box-wrapper">
         <!-- Középső doboz -->
@@ -285,9 +268,7 @@ $ssh = new SSH2($_SESSION["ip"]);
         </div>
     </div>
 </div>
-<!--------------------------------------------------------------------------------------->
-
-<!--CUSTOM-->
+<!--CUSTOM------------------------------------------------------------------------------------------------>
 <div class="content" id="content7">
     <div class="content-box-wrapper">
         <!-- Középső doboz -->

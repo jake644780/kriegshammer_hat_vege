@@ -19,7 +19,7 @@
             <div class="login-header"></div> <!-- Narancssárga fejléc -->
             <div class="login-side login-side-left"></div> <!-- Bal oldali sáv -->
             <div class="login-side login-side-right"></div> <!-- Jobb oldali sáv -->
-            <form method="POST" action="menu.php">
+            <form method="POST" action="menucontroller.php">
                 <div class="input-group">
                     <i class="fas fa-user"></i>
                     <input type="text" id="username" name="user" placeholder="Felhasználónév" required>
