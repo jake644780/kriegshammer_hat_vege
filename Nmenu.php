@@ -93,7 +93,7 @@ if (isset($_POST["show_running"])){
             <button onclick="showDiv(2)">ip config</button>
             <button onclick="showDiv(3)">static route</button>
             <button onclick="showDiv(4)">turn on port</button>
-            <button onclick="showDiv(5)">dhcp</button>
+            <button onclick="showDiv(5)">dhcp</button> 
             <button onclick="showDiv(6)">egyéb szolgáltatások</button>
             <button onclick="showDiv(7)">Custom</button>
         </div>

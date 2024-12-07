@@ -1,0 +1,30 @@
+
+  <input type="text" id="ipv4-input" placeholder="Enter IPv4 (e.g., 10.0.0.1)" maxlength="15">
+
+  <script>
+    const ipv4Input = document.getElementById('ipv4-input');
+
+    ipv4Input.addEventListener('input', () => {
+      const cursorPosition = ipv4Input.selectionStart; // Save cursor position
+      let value = ipv4Input.value;
+
+      // Allow only numbers and dots
+      value = value.replace(/[^\d.]/g, '');
+
+      // Split into octets
+      const octets = value.split('.').map((octet) => octet.slice(0, 3)); // Limit each part to 3 digits
+
+      // Rejoin to form the full IP address
+      ipv4Input.value = octets.join('.');
+
+      // Adjust cursor position to maintain a natural typing experience
+      ipv4Input.setSelectionRange(cursorPosition, cursorPosition);
+    });
+
+    ipv4Input.addEventListener('keydown', (event) => {
+      // Prevent entering multiple dots in a row
+      if (event.key === '.' && ipv4Input.value.endsWith('.')) {
+        event.preventDefault();
+      }
+    });
+  </script>
