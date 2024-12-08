@@ -14,7 +14,7 @@ use phpseclib3\Net\SSH2;
         
     }
 
-    
+//port grabbing at the beninging
 $ssh = new SSH2($_SESSION["ip"]);
 if ($ssh->login($_SESSION["name"], $_SESSION["pass"])){
     $ssh->setTimeout(30);
@@ -45,53 +45,7 @@ if ($ssh->login($_SESSION["name"], $_SESSION["pass"])){
 }
    
 
-sleep(1);
-if (isset($_POST["show_running"])){
-    $ssh = new SSH2($_SESSION["ip"]);
-    if (!$ssh->login($_SESSION["name"], $_SESSION["pass"])){
-        echo "no show runin";
-        exit;
-    }else{
 
-        $ssh->write("enable\n");
-        $ssh->write($_SESSION["pass"] . "\n");
-        $ssh->write("terminal len 0\n");
-        $ssh->write("show running-config\n");
-        $out = $ssh->read();
-        file_put_contents('output.txt', $out);
-        //echo nl2br(htmlspecialchars($out));
-        
-    }
-    $ssh->reset();
-    $ssh->disconnect();
-    $_SESSION["last"] = 1;
-}
-
-if (isset($_POST["ip_config"])){
-    $ssh = new SSH2($_SESSION["ip"]);
-    if (!$ssh->login($_SESSION["name"], $_SESSION["pass"])){
-        echo "no ip config";
-        exit;
-    }else{
-
-        $ssh->write("enable\n");
-        $ssh->write($_SESSION["pass"] . "\n");
-        $ssh->write("terminal len 0\n");
-        $ssh->write("conf t\n");
-        $ssh->write("interface " . $_POST["port"] . "\n");
-        $ipConfig = "ip address " . $_POST["address"] . " " . $_POST["mask"] . "\n";
-        $ssh->write($ipConfig);
-        if (isset($_POST["felkapcs"])){
-            $ssh->write("no sh\n");
-        }
-        $out = $ssh->read();
-        
-        $ssh->reset();
-        $ssh->disconnect();
-        $_SESSION["last"] = 2;
-    }
-
-}
 
 
 
@@ -129,13 +83,85 @@ if (isset($_POST["ip_config"])){
 <!-- Tartalom helye -->
 <?php
 
+//controller for sh ru
+sleep(1);
+if (isset($_POST["show_running"])){
+    $ssh = new SSH2($_SESSION["ip"]);
+    if (!$ssh->login($_SESSION["name"], $_SESSION["pass"])){
+        echo "no show runin";
+        exit;
+    }else{
+
+        $ssh->write("enable\n");
+        $ssh->write($_SESSION["pass"] . "\n");
+        $ssh->write("terminal len 0\n");
+        $ssh->write("show running-config\n");
+        $out = $ssh->read();
+        file_put_contents('output.txt', $out);
+        //echo nl2br(htmlspecialchars($out));
+        
+    }
+    $ssh->reset();
+    $ssh->disconnect();
+    $_SESSION["last"] = 1;
+}
 require("menu/show.php");       //TODO[x]
-require("menu/ipconfig.php");   //TODO[]
+if (isset($_POST["ip_config"])){
+    $ssh = new SSH2($_SESSION["ip"]);
+    if (!$ssh->login($_SESSION["name"], $_SESSION["pass"])){
+        echo "no ip config";
+        exit;
+    }else{
+
+        $ssh->write("enable\n");
+        $ssh->write($_SESSION["pass"] . "\n");
+        $ssh->write("terminal len 0\n");
+        $ssh->write("conf t\n");
+        $ssh->write("interface " . $_POST["port"] . "\n");
+        $ipConfig = "ip address " . $_POST["address"] . " " . $_POST["mask"] . "\n";
+        $ssh->write($ipConfig);
+        if (isset($_POST["felkapcs"])){
+            $ssh->write("no sh\n");
+        }
+        $out = $ssh->read();
+        
+        $ssh->reset();
+        $ssh->disconnect();
+        $_SESSION["last"] = 2;
+    }
+
+}
+require("menu/ipconfig.php");   //TODO[x]
+if (isset($_POST["route"])){
+    $ssh = new SSH2($_SESSION["ip"]);
+    if (!$ssh->login($_SESSION["name"], $_SESSION["pass"])){
+        echo "no ip config";
+        exit;
+    }else{
+
+        $ssh->write("enable\n");
+        $ssh->write($_SESSION["pass"] . "\n");
+        $ssh->write("terminal len 0\n");
+        $ssh->write("conf t\n");
+        $ssh->write("ip route " . $_POST["network"] . " " . $_POST["mask"] . $_POST["next"] . "\n"); 
+        $ssh->write($ipConfig);
+        if (isset($_POST["felkapcs"])){
+            $ssh->write("no sh\n");
+        }
+        $out = $ssh->read();
+        
+        $ssh->reset();
+        $ssh->disconnect();
+        $_SESSION["last"] = 3;
+    }
+}
 require("menu/route.php");      //TODO[]
 require("menu/port.php");       //TODO[]
 require("menu/dhcp.php");       //TODO[]
 require("menu/egyeb.php");      //TODO[]
 require("menu/custom.php");     //TODO[]
+//TODO kimenet csak ha az volt a legutolso
+
 ?>
 </body>
 </html>

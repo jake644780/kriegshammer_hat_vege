@@ -26,7 +26,7 @@
         
                 <?php
 
-            if (!($out === "")){
+            if (!($out === "") && $_SESSION["last"] ===    2){
                 echo '<div class="k-box"><div class="k-title">Kimenet</div><p>';
                 $snip = explode("conf t", $out);
                 echo nl2br(htmlspecialchars($snip[1]));
