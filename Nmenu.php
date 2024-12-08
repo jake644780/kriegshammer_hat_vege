@@ -197,28 +197,39 @@ if (isset($_POST["dhcp"])){
         $ssh->write($_SESSION["pass"] . "\n");
         $ssh->write("terminal len 0\n");
         $ssh->write("conf t\n");
-        if(isset($_POST["medence"])){
-            $ssh->write("ip dhcp pool" . $_POST["medence"] . "\n");
-            $ssh->write("network " . $_POST["start"] . " " . $_POST["end"] . "\n");
-            if (isset($_POST["def"])) $ssh->write("default-router " . $_POST["def"] . "\n");
-            if (isset($_POST["dns"])) $ssh->write("dns-server" . $_POST["dns"]. "\n");
+        
+        if (isset($_POST["medence"]) && !empty($_POST["medence"])) {
+            $ssh->write("ip dhcp pool " . $_POST["medence"] . "\n");
+            $ssh->write("network " . $_POST["network"] . " " . $_POST["mask"] . "\n");
+        
+            if (isset($_POST["def"]) && !empty($_POST["def"])) {
+                $ssh->write("default-router " . $_POST["def"] . "\n");
+            }
+            if (isset($_POST["dns"]) && !empty($_POST["dns"])) {
+                $ssh->write("dns-server " . $_POST["dns"] . "\n");
+            }
+        
             $ssh->write("exit\n");
         }
-        for ($i = 0; $i < sizeof($_POST["excluded_addresses"]);$i++){
-            $ssh->write("ip dhcp excluded-address" . $_POST["excluded_addresses"][$i] . "\n");
+        
+        if (isset($_POST["excluded_addresses"]) && !empty($_POST["excluded_addresses"])) { 
+            for ($i = 0; $i < sizeof($_POST["excluded_addresses"]); $i++) {
+                if (!empty($_POST["excluded_addresses"][$i])) {
+                    $ssh->write("ip dhcp excluded-address " . $_POST["excluded_addresses"][$i] . "\n");
+                }
+            }
         }
-
+        
         $out = $ssh->read();
         $ssh->reset();
         $ssh->disconnect();
         $_SESSION["last"] = 5;
+        
     }  
 }
-
-require("menu/dhcp.php");       //TODO[]
+require("menu/dhcp.php");       //TODO[x]
 require("menu/egyeb.php");      //TODO[]
 require("menu/custom.php");     //TODO[]
-//TODO kimenet csak ha az volt a legutolso
 
 ?>
 </body>

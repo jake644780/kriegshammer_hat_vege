@@ -4,8 +4,13 @@
         <div class="center-box">
         <form method="POST">
         <label for="text1" class="text-label">medence neve</label>         <input type="text"  class="text-box" name="medence" maxlength="15">
-        <label for="text1" class="text-label">medence kezdete</label>         <input type="text"  class="text-box" name="start" maxlength="15">
-        <label for="text1" class="text-label">medence vége</label>            <input type="text"  class="text-box" name="end" maxlength="15">
+        <label for="text1" class="text-label">hálózati cím</label>         <input type="text"  class="text-box" name="network" maxlength="15">
+        <label for="text2" class="text-label">hálózati maszk</label>
+            <select name="mask" class="dropdown text-box">
+            <?php
+            require("masks.php");
+            ?>
+            </select><br>
         <label for="text1" class="text-label">alapértelmezett átjáró</label>    <input type="text"  class="text-box" name="def" maxlength="15">
         <label for="text1" class="text-label">dns szerver</label>               <input type="text"  class="text-box" name="dns" maxlength="15">
         <label for="text1" class="text-label">kitiltott címek</label>
@@ -16,6 +21,8 @@
 
         <input type="hidden" name="dhcp">
         <input type="submit" class="continue-button" name="action" value="Tovább">
+        <br>
+        </div>
 
     </form>
         

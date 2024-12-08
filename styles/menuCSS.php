@@ -112,7 +112,8 @@
 
     .center-box {
         background-color: #ffffff;
-        width: 600px;
+        width: 690px;
+        max-width: 690px;
         padding: 20px;
         display: flex;
         flex-direction: column;
@@ -134,7 +135,8 @@
         
         background-color: rgba(211, 211, 211, 70%);
         padding: 20px 0;
-        width: 850px;
+        width: 900px;
+        max-width: 900px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -217,7 +219,8 @@
         background-color: #ffffff;
         color: #000000;
         padding: 20px;
-        width: 600px;
+        width: 640px;
+        max-width: 640px;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
@@ -228,7 +231,8 @@
         background-color: #ffffff;
         color: #000000;
         padding: 20px;
-        width: 600px;
+        width: 650px;
+        max-width: 650px;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }

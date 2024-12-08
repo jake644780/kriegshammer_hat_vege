@@ -5,7 +5,7 @@ barnaRuter#terminal len 0
 barnaRuter#show running-config
 Building configuration...
 
-Current configuration : 1101 bytes
+Current configuration : 1346 bytes
 !
 version 12.4
 service timestamps debug datetime msec
@@ -25,6 +25,17 @@ no ip icmp rate-limit unreachable
 ip cef
 !
 !
+no ip dhcp use vrf connected
+ip dhcp excluded-address 10.0.0.5
+ip dhcp excluded-address 10.0.0.6
+!
+ip dhcp pool penisz
+   default-router 10.0.0.1 
+   dns-server 8.8.8.8 
+!
+ip dhcp pool penisz2
+   default-router 100.0.0.1 
+   dns-server 8.8.8.8 
 !
 !
 no ip domain lookup
