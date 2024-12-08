@@ -143,11 +143,9 @@ if (isset($_POST["route"])){
         $ssh->write($_SESSION["pass"] . "\n");
         $ssh->write("terminal len 0\n");
         $ssh->write("conf t\n");
-        $ssh->write("ip route " . $_POST["network"] . " " . $_POST["mask"] . $_POST["next"] . "\n"); 
-        $ssh->write($ipConfig);
-        if (isset($_POST["felkapcs"])){
-            $ssh->write("no sh\n");
-        }
+        $command = "ip route " . $_POST["network"] . " " . $_POST["mask"] . " " . $_POST["next"] . "\n";
+        $ssh->write($command);
+        $ssh->write("do show ip route static\n");
         $out = $ssh->read();
         
         $ssh->reset();

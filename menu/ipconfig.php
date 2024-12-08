@@ -18,7 +18,7 @@
             require("masks.php");
             ?>
             </select><br>
-            <label><input type="checkbox" name="felkapcs" value="felkapcs">port felkapcsolása</label><br>
+            <label><input type="checkbox" name="felkapcs" class="text-label" value="felkapcs">port felkapcsolása</label><br>
         <input type="hidden" name="ip_config">
         <input type="submit" class="continue-button" name="action" value="Tovább">
         </div>

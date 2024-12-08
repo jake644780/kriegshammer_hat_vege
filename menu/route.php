@@ -28,11 +28,11 @@
     <!-- Dynamic Next Hop Input -->
     <div id="nextHopInput">
         
-      <select id="portSelection" class="text-box">
-        <option value="1">Port 1</option>
-        <option value="2">Port 2</option>
-        <option value="3">Port 3</option>
-      </select>
+    <select id="ports" class="dropdown text-box" name="next">;
+            <?php
+            for($i = 0; $i < sizeof($ports);$i++) echo '<option name="'. $ports[$i] .'" value="'. $ports[$i] .'">'. $ports[$i] .'</option>';
+           ?>
+        </select>
     </div>
 
   <input type="hidden" name="route">
@@ -99,17 +99,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const renderNextHopInput = (type) => {
     if (type === 'port') {
       nextHopInputDiv.innerHTML = `
-        <label for="portSelection">Port:</label>
-        <select id="portSelection" class="text-box">
-          <option value="1">Port 1</option>
-          <option value="2">Port 2</option>
-          <option value="3">Port 3</option>
+        <label for="portSelection">Next Hop Port:</label>
+        <select id="ports" class="dropdown text-box" name ="next">;
+            <?php
+            for($i = 0; $i < sizeof($ports);$i++) echo '<option name="'. $ports[$i] .'" value="'. $ports[$i] .'">'. $ports[$i] .'</option>';
+           ?>
         </select>
       `;
     } else if (type === 'address') {
       nextHopInputDiv.innerHTML = `
         <label for="nextHopAddress">Next Hop Address:</label>
-        <input type="text" id="nextHopAddress" class="text-box" placeholder="Enter next hop address (e.g., 192.168.1.254)">
+        <input type="text" id="nextHopAddress" class="text-box" name="next" placeholder="Enter next hop address (e.g., 192.168.1.254)">
       `;
     }
   };
