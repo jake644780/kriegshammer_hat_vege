@@ -11,21 +11,30 @@
         </select>
         <br>
         <label for="text1" class="text-label">ip cím</label>
-        <input type="text" id="ipv4-input" class="text-box" placeholder="Enter IPv4 (e.g., 10.0.0.1)" maxlength="15">
+        <input type="text" id="ipv4-input" class="text-box" name="address" placeholder="Enter IPv4 (e.g., 10.0.0.1)" maxlength="15">
             <label for="text2" class="text-label">hálózati maszk</label>
             <select name="mask" class="dropdown text-box">
             <?php
             require("masks.php");
             ?>
-            </select>
+            </select><br>
+            <label><input type="checkbox" name="felkapcs" value="felkapcs">port felkapcsolása</label><br>
         <input type="hidden" name="ip_config">
         <input type="submit" class="continue-button" name="action" value="Tovább">
         </div>
     </form>
-        <div class="k-box">
-            <div class="k-title">Kimenet</div>
-            <p>BARNA CUKIIIIIII</p>
-        </div>
+        
+                <?php
+
+            if (!($out === "")){
+                echo '<div class="k-box"><div class="k-title">Kimenet</div><p>';
+                $snip = explode("conf t", $out);
+                echo nl2br(htmlspecialchars($snip[1]));
+                echo '</p></div>';
+
+            }
+                
+            ?>
     </div>
 </div>
 

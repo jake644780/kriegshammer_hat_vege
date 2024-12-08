@@ -57,7 +57,6 @@ if (isset($_POST["show_running"])){
         $ssh->write($_SESSION["pass"] . "\n");
         $ssh->write("terminal len 0\n");
         $ssh->write("show running-config\n");
-        $ssh->write("show running-config\n");
         $out = $ssh->read();
         file_put_contents('output.txt', $out);
         //echo nl2br(htmlspecialchars($out));
@@ -66,6 +65,32 @@ if (isset($_POST["show_running"])){
     $ssh->reset();
     $ssh->disconnect();
     $_SESSION["last"] = 1;
+}
+
+if (isset($_POST["ip_config"])){
+    $ssh = new SSH2($_SESSION["ip"]);
+    if (!$ssh->login($_SESSION["name"], $_SESSION["pass"])){
+        echo "no ip config";
+        exit;
+    }else{
+
+        $ssh->write("enable\n");
+        $ssh->write($_SESSION["pass"] . "\n");
+        $ssh->write("terminal len 0\n");
+        $ssh->write("conf t\n");
+        $ssh->write("interface " . $_POST["port"] . "\n");
+        $ipConfig = "ip address " . $_POST["address"] . " " . $_POST["mask"] . "\n";
+        $ssh->write($ipConfig);
+        if (isset($_POST["felkapcs"])){
+            $ssh->write("no sh\n");
+        }
+        $out = $ssh->read();
+        
+        $ssh->reset();
+        $ssh->disconnect();
+        $_SESSION["last"] = 2;
+    }
+
 }
 
 
@@ -93,10 +118,11 @@ if (isset($_POST["show_running"])){
             <button onclick="showDiv(1)">show running</button>
             <button onclick="showDiv(2)">ip config</button>
             <button onclick="showDiv(3)">static route</button>
+            <button onclick="showDiv(7)">Custom</button>
             <button onclick="showDiv(4)">turn on port</button>
             <button onclick="showDiv(5)">dhcp</button> 
             <button onclick="showDiv(6)">egyéb szolgáltatások</button>
-            <button onclick="showDiv(7)">Custom</button>
+           
         </div>
     </div>
 
