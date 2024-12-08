@@ -12,16 +12,31 @@
           <div class="port-row">
             <span class="port-name">' . $ports[$i] . '</span>
             <label class="switch">
-              <input type="checkbox" name="ports[' . $ports[$i] . ']">
+              <input type="checkbox" name="' . $ports[$i] . '">
               <span class="slider"></span>
             </label>
           </div>';
       }
 
       ?>
-      <button type="submit">Save</button>
+      
+    <input type="hidden" name="portCon">
+    <input type="submit" class="continue-button" name="action" value="Tovább">
     </form>
   </div>
+
+
+  <?php
+
+if (!($out === "") && $_SESSION["last"] ===    4){
+    echo '<div class="k-box"><div class="k-title">Kimenet</div><p>';
+    $snip = explode("conf t", $out);
+    echo nl2br(htmlspecialchars($snip[1]));
+    echo '</p></div>';
+
+}
+    
+?>
         
     </div>
 </div>

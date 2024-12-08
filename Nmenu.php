@@ -16,8 +16,9 @@ use phpseclib3\Net\SSH2;
 
 //port grabbing at the beninging
 $ssh = new SSH2($_SESSION["ip"]);
+$ssh->setTimeout(30);
+
 if ($ssh->login($_SESSION["name"], $_SESSION["pass"])){
-    $ssh->setTimeout(30);
 
     $ssh->write("enable\n");
     $ssh->write($_SESSION["pass"] . "\n");
@@ -123,6 +124,8 @@ if (isset($_POST["ip_config"])){
         if (isset($_POST["felkapcs"])){
             $ssh->write("no sh\n");
         }
+        $ssh->write("exit\nexit\n");
+        $ssh->write("show ip int br");
         $out = $ssh->read();
         
         $ssh->reset();
@@ -154,7 +157,34 @@ if (isset($_POST["route"])){
     }
 }
 require("menu/route.php");      //TODO[x]
-if (isset($_POST["port"]))
+if (isset($_POST["portCon"])){
+    $ssh = new SSH2($_SESSION["ip"]);
+    if (!$ssh->login($_SESSION["name"], $_SESSION["pass"])){
+        echo "no ip config";
+        exit;
+    }else{
+
+        $ssh->write("enable\n");
+        $ssh->write($_SESSION["pass"] . "\n");
+        $ssh->write("terminal len 0\n");
+        $ssh->write("conf t\n");
+        for($i = 0;$i < sizeof($ports); $i++){
+            $ssh->write("interface " . $ports[$i] . "\n");
+              if (isset($_POST[$ports[$i]])){
+                $ssh->write("no shutdown\n");
+              }else{
+                $ssh->write("shutdown\n");
+              }
+              $ssh->write("exit\n");
+
+        }
+        $ssh->write("do show ip int br\n");
+        $out = $ssh->read();
+        $ssh->reset();
+        $ssh->disconnect();
+        $_SESSION["last"] = 4;
+    }
+}
 require("menu/port.php");       //TODO[]
 require("menu/dhcp.php");       //TODO[]
 require("menu/egyeb.php");      //TODO[]
