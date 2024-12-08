@@ -1,9 +1,13 @@
 <style>
+
+    *{
+        font-family: 'Poppins', sans-serif;
+    }
     /* Alapstílusok */
     body {
         margin: 0;
         background-color: #f0f0f0; /* Világos szürke háttér */
-        font-family: Arial, sans-serif;
+        font-family: 'Poppins', sans-serif;
         display: flex;
         justify-content: center;
         align-items: center;

@@ -33,7 +33,7 @@ if ($ssh->login($_SESSION["name"], $_SESSION["pass"])){
             $line = explode(" ", $split2[$i]);
             $ports[] = $line[0];
         }
-            echo (implode(",", $ports));
+            //echo (implode(",", $ports));
     }else $split2 = $split1;
         $ssh->reset();
         $ssh->disconnect();
@@ -153,7 +153,8 @@ if (isset($_POST["route"])){
         $_SESSION["last"] = 3;
     }
 }
-require("menu/route.php");      //TODO[]
+require("menu/route.php");      //TODO[x]
+if (isset($_POST["port"]))
 require("menu/port.php");       //TODO[]
 require("menu/dhcp.php");       //TODO[]
 require("menu/egyeb.php");      //TODO[]

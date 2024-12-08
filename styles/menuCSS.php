@@ -21,6 +21,10 @@
 
 
 <style>
+
+    *{
+        font-family: 'Poppins', 'sans-serif';
+    }
     .dual-bar {
         width: 100%;
         height: 150px;

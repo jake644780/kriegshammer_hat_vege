@@ -1,38 +1,34 @@
-<div class="content" id="content4">
-    <div class="content-box-wrapper">
-        <!-- Középső doboz -->
-        <div class="container">
-
-
-        <form method="POST">
-        <label for="text1" class="text-label">Portok</label>
 <?php
-    for ($i = 0; $i < count($ports); $i++) {
-          echo '
-          <div class="port-row">
-            <span class="port-name">' . $ports[$i] . '</span>
-            <label class="switch">
-              <input type="checkbox" name="ports[' . $ports[$i] . ']">
-              <span class="slider"></span>
-            </label>
-          </div>';
-      }
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Port Control</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-      ?>
-      <button type="submit">Save</button>
-    </form>
-  </div>
-        
-    </div>
-</div>
-<style>
- 
     .container {
       background: white;
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       width: 300px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
     }
 
     .port-row {
@@ -106,3 +102,22 @@
       background: #45a049;
     }
   </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Port Control</h2>
+    <form method="POST">
+      <?php foreach ($ports as $port): ?>
+        <div class="port-row">
+          <span class="port-name"><?= htmlspecialchars($port) ?></span>
+          <label class="switch">
+            <input type="checkbox" name="ports[<?= htmlspecialchars($port) ?>]">
+            <span class="slider"></span>
+          </label>
+        </div>
+      <?php endforeach; ?>
+      <button type="submit">Save</button>
+    </form>
+  </div>
+</body>
+</html>
