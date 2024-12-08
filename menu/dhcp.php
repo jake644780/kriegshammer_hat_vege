@@ -3,8 +3,9 @@
         <!-- Középső doboz -->
         <div class="center-box">
         <form method="POST">
-        <label for="text1" class="text-label">tartomány kezdete</label>         <input type="text"  class="text-box" name="start" maxlength="15">
-        <label for="text1" class="text-label">tartomány vége</label>            <input type="text"  class="text-box" name="end" maxlength="15">
+        <label for="text1" class="text-label">medence neve</label>         <input type="text"  class="text-box" name="medence" maxlength="15">
+        <label for="text1" class="text-label">medence kezdete</label>         <input type="text"  class="text-box" name="start" maxlength="15">
+        <label for="text1" class="text-label">medence vége</label>            <input type="text"  class="text-box" name="end" maxlength="15">
         <label for="text1" class="text-label">alapértelmezett átjáró</label>    <input type="text"  class="text-box" name="def" maxlength="15">
         <label for="text1" class="text-label">dns szerver</label>               <input type="text"  class="text-box" name="dns" maxlength="15">
         <label for="text1" class="text-label">kitiltott címek</label>
@@ -13,14 +14,14 @@
         </div>
         <button type="button" class="add-button" onclick="addExcludedAddress()">Add Excluded Address</button>
 
-        <input type="hidden" name="route">
+        <input type="hidden" name="dhcp">
         <input type="submit" class="continue-button" name="action" value="Tovább">
 
     </form>
         
                 <?php
 
-            if (!($out === "") && $_SESSION["last"] ===    2){
+            if (!($out === "") && $_SESSION["last"] === 5){
                 echo '<div class="k-box"><div class="k-title">Kimenet</div><p>';
                 $snip = explode("conf t", $out);
                 echo nl2br(htmlspecialchars($snip[1]));
