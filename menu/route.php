@@ -60,7 +60,7 @@ if (!($out === "") && $_SESSION["last"] ===    3){
 
 
 <script>
-  const ipv4Input = document.getElementById('ipv4-input');
+/*  const ipv4Input = document.getElementById('ipv4-input');
 
   ipv4Input.addEventListener('input', () => {
     const cursorPosition = ipv4Input.selectionStart; // Save cursor position
@@ -87,7 +87,7 @@ if (!($out === "") && $_SESSION["last"] ===    3){
   });
 
 
-  
+  */
 </script>
 
 

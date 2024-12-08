@@ -131,6 +131,7 @@
     }
 
     .content-box-wrapper {
+        
         background-color: rgba(211, 211, 211, 70%);
         padding: 20px 0;
         width: 850px;

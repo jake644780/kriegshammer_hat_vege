@@ -73,7 +73,7 @@ if ($ssh->login($_SESSION["name"], $_SESSION["pass"])){
             <button onclick="showDiv(1)">show running</button>
             <button onclick="showDiv(2)">ip config</button>
             <button onclick="showDiv(3)">static route</button>
-            <button onclick="showDiv(7)">Custom</button>
+            <button onclick="showDiv(7)" style="background-color: gray;">Custom</button>
             <button onclick="showDiv(4)">turn on port</button>
             <button onclick="showDiv(5)">dhcp</button> 
             <button onclick="showDiv(6)">egyéb szolgáltatások</button>
