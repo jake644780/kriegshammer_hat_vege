@@ -35,7 +35,7 @@
         </select>
     </div>
 
-  <input type="hidden" name="route">
+  <input type="hidden" name="type" value="route">
   <input type="submit" class="continue-button" name="action" value="Tovább">
 
         </div>

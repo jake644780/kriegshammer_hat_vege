@@ -1,77 +1,95 @@
 <?php
-
-
-
-
 session_start();
-echo $_SESSION["ip"];
-$menu = 0;
+require 'vendor/autoload.php';
+use phpseclib3\Net\SSH2;
 
+/*
+            <button onclick="showDiv(1)">show running</button>
+            <button onclick="showDiv(2)">ip config</button>
+            <button onclick="showDiv(3)">static route</button>
+            <button onclick="showDiv(7)" style="background-color: blue;">Custom</button>
+            <button onclick="showDiv(4)">turn on port</button>
+            <button onclick="showDiv(5)">dhcp</button> 
+            <button onclick="showDiv(6)">egyéb szolgáltatások</button>
+*/ 
 
-if (isset($_POST["action"])) {
-
-    if (isset($_POST["login"])) {
+if (isset($_POST["action"])){
+    $ssh = new SSH2($_SESSION["ip"]);
     
-            $ip = filter_var(trim($_POST["ip"]), FILTER_VALIDATE_IP);
-            $user = htmlspecialchars(trim($_POST["user"]));
-            $pass = htmlspecialchars(trim($_POST["pass"]));
-    
-            if (!$ip || empty($user) || empty($pass)) {
-                header("Location: back/error.php?error=invalid_input");
-                exit;
+    if (!$ssh->login($_SESSION["name"], $_SESSION["pass"])){
+        echo "can't log in :("; //TODO[] ERROR PAGE
+        exit;
+    }else{
+
+        $in = "enable\n" . $_SESSION["pass"] . "\n" . "terminal len 0\n";
+        
+    switch ($_POST["type"]){
+        case "show_config":
+            $in .= "running-config\n";
+            $_SESSION["last"] = 1;
+        break;
+
+        case "ip_config":
+
+        break;
+        
+        case "route":
+
+        break;
+            
+        case "portCon":
+            $in .= "conf t\n";
+            for($i = 0;$i < sizeof($ports); $i++){
+                $in .= "interface" . $ports[$i] . "\n";
+                  if (isset($_POST[$ports[$i]])) $in .= "no ";
+                  $in .= "shutdown\n";
+                  $in .= "exit\n";
             }
-    
-            try {
-                $ssh = new SSH2($ip);
-                if ($ssh->login($user, $pass)) {
-                    $_SESSION['ip'] = $ip;
-                    $_SESSION['user'] = $user;
-                    $_SESSION["pass"] = $pass;
-                    $menu = 1;
-                } else {
-                    header("Location: back/error.php?error=login_failed");
-                    exit;
-                }
-            } catch (Exception $e) {
-                    header("Location: back/error.php?error=connection_failed");
-                    exit;
-            }
-    
-    }else if (isset($_POST["show-running"])){
-        $ip = filter_var(trim($_POST["ip"]), FILTER_VALIDATE_IP);
-        $user = htmlspecialchars(trim($_POST["user"]));
-        $pass = htmlspecialchars(trim($_POST["pass"]));
+            $in .= "do show ip int br\n";
+            $_SESSION["last"] = 4;
+        break;
+                
+        case "dhcp":
 
-        try {
-            $ssh = new SSH2($ip);
-            if ($ssh->login($user, $pass)) {
-                echo "Logged in successfully.<br>";
-        
-                // Handle "enable" if needed, even without a password
-                $ssh->write("enable\n"); // Send the "enable" command
-                sleep(1); // Allow time for a potential prompt
-                $ssh->write("e\n");
-                // Send the terminal length command
-                $ssh->write("terminal length 0\n");
-                sleep(1);
-        
-                // Execute the command
-                $ssh->write("show running-config\n");
-                $output = $ssh->read();
-        
-                // Display the output
-                echo nl2br(htmlspecialchars($output));
-            } else {
-                echo "SSH login failed.";
-            }
-        } catch (Exception $e) {
-            echo "Error: " . $e->getMessage();
-        }
-        
- 
+        break;
+                    
+        case "show":
+
+        break;
     }
-
+        $ssh->write($in);
+        $out = $ssh->read();
+        file_put_contents('output.txt', $out);
+        $ssh->reset();
+        $ssh->disconnect();
+    }
 }
 
 
-if ($menu) require("menu.php");
+
+if (isset($_POST["show_running"])){
+    $ssh = new SSH2($_SESSION["ip"]);
+    if (!$ssh->login($_SESSION["name"], $_SESSION["pass"])){
+        echo "no show runin";
+        exit;
+    }else{
+
+        $ssh->write("enable\n");
+        $ssh->write($_SESSION["pass"] . "\n");
+        $ssh->write("terminal len 0\n");
+        $ssh->write("show running-config\n");
+        $out = $ssh->read();
+        file_put_contents('output.txt', $out);
+        //echo nl2br(htmlspecialchars($out));
+        
+    }
+    $ssh->reset();
+    $ssh->disconnect();
+    $_SESSION["last"] = 1;
+}
+/*
+creating a stringbuffer with absolute pontosság and then writing that one buffer in with one command
+
+*/
+
+?>

@@ -19,7 +19,7 @@
         </div>
         <button type="button" class="add-button" onclick="addExcludedAddress()">Add Excluded Address</button>
 
-        <input type="hidden" name="dhcp">
+        <input type="hidden" name="type" value="dhcp">
         <input type="submit" class="continue-button" name="action" value="Tovább">
         <br>
         </div>

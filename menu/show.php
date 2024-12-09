@@ -5,7 +5,7 @@
             <form action="Nmenu.php" method="POST">
                 <label for="text1" class="text-label">beállítások megtekintése</label>
                 <br>
-                <input type="hidden" name="show_running">
+                <input type="hidden" name="type" value="show_running">
                 <input type="submit" class="continue-button" name="action" value="Tovább">
             </form>
             </div>

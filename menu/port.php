@@ -20,7 +20,7 @@
 
       ?>
       
-    <input type="hidden" name="portCon">
+    <input type="hidden" name="type" value="portCon">
     <input type="submit" class="continue-button" name="action" value="Tovább">
     </form>
   </div>
