@@ -37,19 +37,12 @@ if (isset($_POST["action"])){
             $in .= "
             conf t\n
             ";
-            for($i = 0;$i < count($ports); $i++){
-                $in .= "
-                interface" . $ports[$i] . "\n
-                ";
-                if (isset($_POST[$ports[$i]])) $in .= "no ";
-                $in .= "
-                shutdown\n
-                exit\n
-                ";
+            for($i = 0;$i < count($_SESSION["ports"]); $i++){
+                $in .= "interface " . $_SESSION["ports"][$i] . "\n";
+                if (isset($_POST[$_SESSION["ports"][$i]])) $in .= "no ";
+                $in .= "shutdown\nexit\n";
             }
-            $in .= "
-            do show ip int br\n
-            ";
+            $in .= "do show ip int br\n";
             $_SESSION["last"] = 4;
             break;
                 

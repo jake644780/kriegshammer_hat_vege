@@ -2,36 +2,24 @@
 barnaRuter>enable
 Password: 
 barnaRuter#terminal len 0
-barnaRuter#conf t
+barnaRuter#
+barnaRuter#
+barnaRuter#            conf t
 Enter configuration commands, one per line.  End with CNTL/Z.
-barnaRuter(config)#ip dhcp pool izebize
-barnaRuter(dhcp-config)#network 8.0.0.0 255.255.255.255
-8.0.0.0 / 255.255.255.255 is an invalid network.
-barnaRuter(dhcp-config)#default-router 8.0.0.1
-barnaRuter(dhcp-config)#dns-server 1.1.1.1
-barnaRuter(dhcp-config)#exit
-barnaRuter(config)#ip dhcp excluded-address 123.123.123.123
 barnaRuter(config)#
 barnaRuter(config)#
-barnaRuter(config)#            do sh ip dhcp pool
-
-Pool pelda :
- Utilization mark (high/low)    : 100 / 0
- Subnet size (first/next)       : 0 / 0 
- Total addresses                : 16777214
- Leased addresses               : 0
- Pending event                  : none
- 1 subnet is currently in the pool :
- Current index        IP address range                    Leased addresses
- 10.0.0.1             10.0.0.1         - 10.255.255.254    0
-
-Pool izebize :
- Utilization mark (high/low)    : 100 / 0
- Subnet size (first/next)       : 0 / 0 
- Total addresses                : 0
- Leased addresses               : 0
- Pending event                  : none
- 0 subnet is currently in the pool 
+barnaRuter(config)#            interface FastEthernet0/0
+barnaRuter(config-if)#no shutdown
+barnaRuter(config-if)#exit
+barnaRuter(config)#interface FastEthernet0/1
+barnaRuter(config-if)#shutdown
+barnaRuter(config-if)#exit
+barnaRuter(config)#interface FastEthernet1/0
+barnaRuter(config-if)#shutdown
+barnaRuter(config-if)#exit
+barnaRuter(config)#do show ip int br
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            192.168.1.63    YES DHCP   up                    up      
+FastEthernet0/1            7.7.4.1         YES NVRAM  administratively down down    
+FastEthernet1/0            172.16.0.1      YES NVRAM  administratively down down    
 barnaRuter(config)#
-barnaRuter(config)#
-barnaRuter(config)#            
