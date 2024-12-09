@@ -2,7 +2,7 @@
     <div class="content-box-wrapper">
         <!-- Középső doboz -->
         <div class="center-box">
-        <form method="POST">
+        <form method="POST" action="controller.php">
         <label for="text1" class="text-label">medence neve</label>         <input type="text"  class="text-box" name="medence" maxlength="15">
         <label for="text1" class="text-label">hálózati cím</label>         <input type="text"  class="text-box" name="network" maxlength="15">
         <label for="text2" class="text-label">hálózati maszk</label>
@@ -28,9 +28,10 @@
         
                 <?php
 
-            if (!($out === "") && $_SESSION["last"] === 5){
+            if ($_SESSION["last"] === 5){
                 echo '<div class="k-box"><div class="k-title">Kimenet</div><p>';
-                $snip = explode("conf t", $out);
+                $conf = file_get_contents("output.txt");
+                $snip = explode("conf t", $conf);
                 echo nl2br(htmlspecialchars($snip[1]));
                 echo '</p></div>';
 

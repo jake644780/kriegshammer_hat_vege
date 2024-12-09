@@ -4,7 +4,7 @@
         <div class="container">
 
 
-        <form method="POST">
+        <form method="POST" action="controller.php">
         <label for="text1" class="text-label">Portok</label>
 <?php
     for ($i = 0; $i < count($ports); $i++) {
@@ -28,9 +28,10 @@
 
   <?php
 
-if (!($out === "") && $_SESSION["last"] ===    4){
+if ($_SESSION["last"] === 4){
     echo '<div class="k-box"><div class="k-title">Kimenet</div><p>';
-    $snip = explode("conf t", $out);
+    $conf = file_get_contents("output.txt");
+    $snip = explode("conf t", $conf);
     echo nl2br(htmlspecialchars($snip[1]));
     echo '</p></div>';
 

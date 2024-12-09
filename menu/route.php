@@ -2,7 +2,7 @@
     <div class="content-box-wrapper">
         <!-- Középső doboz -->
         <div class="center-box">
-        <form action="Nmenu.php" method="POST" class="menu-form">
+        <form action="controller.php" method="POST" class="menu-form">
         <label for="text1" class="text-label">hálózat címe</label>
         <input type="text" id="ipv4-input" class="text-box" name="network" placeholder="Enter IPv4 (e.g., 10.0.0.1)" maxlength="15">
             <label for="text2" class="text-label">hálózati maszk</label>
@@ -46,9 +46,10 @@
 
     <?php
 
-if (!($out === "") && $_SESSION["last"] ===    3){
+if ($_SESSION["last"] === 3){
     echo '<div class="k-box"><div class="k-title">Kimenet</div><p>';
-    $snip = explode("conf t", $out);
+    $conf = file_get_contents("output.txt");
+    $snip = explode("conf t", $conf);
     echo nl2br(htmlspecialchars($snip[1]));
     echo '</p></div>';
 

@@ -29,26 +29,20 @@
 if ($_SESSION["last"] === 2) {
   echo '<div class="k-box"><div class="k-title">Kimenet</div><p>';
   
-  $out = file_get_contents("output.txt");
-  $snip = explode("conf t", $out);
+  $conf = file_get_contents("output.txt");
+  $snip = explode("conf t", $conf);
   echo nl2br(htmlspecialchars($snip[1]));
   echo '</p></div>';
 
   /*
+  TODO[] table of ints
   $ports_for_tables = [];
   $lines = explode("\n",$snip[1]);
   for ($i = 0; $i < count($lines); $i++) if (preg_match('^(\S+)\s+(\S+)\s+(YES|NO)\s+(\S+)\s+(\S+.*\S)\s+(up|down)$', $lines[$i])) $ports_for_tables[] = $lines[$i];
   */
     
     // Split $snip into lines and capture port lines
-    $ports_for_tables = [];
-    $lines = explode("\n", $snip[1]);
-    for ($i = 0; $i < count($lines); $i++) {
-        if (preg_match('^(\S+)\s+(\S+)\s+(YES|NO)\s+(\S+)\s+(.+?)\s+(up|down)$/', $lines[$i])) {
-            $ports_for_tables[] = $lines[$i]; // Store the matched port line
-        }
-    }
-
+    
 }
 
 

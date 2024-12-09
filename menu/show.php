@@ -2,7 +2,7 @@
         <div class="content-box-wrapper">
             <!-- Középső doboz -->
             <div class="center-box">
-            <form action="Nmenu.php" method="POST">
+            <form action="controller.php" method="POST">
                 <label for="text1" class="text-label">beállítások megtekintése</label>
                 <br>
                 <input type="hidden" name="type" value="show_running">
@@ -13,9 +13,10 @@
     
                 <?php
 
-                    if (!($out === "")){
+                    if ($_SESSION["last"] === 1){
                         echo '<div class="k-box"><div class="k-title">Kimenet</div><p>';
-                        $snip = explode("show running-config", $out);
+                        $conf = file_get_contents("output.txt");
+                        $snip = explode("show running-config", $conf);
                         echo nl2br(htmlspecialchars($snip[1]));
                         echo '</p></div>';
 
