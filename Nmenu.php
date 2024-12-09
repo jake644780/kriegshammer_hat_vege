@@ -1,12 +1,9 @@
 <?php
 session_start();
-
 require 'vendor/autoload.php';
-
-$_SESSION["output"] = "alma";
-
 use phpseclib3\Net\SSH2;
-    if (isset($_POST["name"]) && isset($_POST["pass"]) && isset($_POST["ip"])){
+
+if (isset($_POST["name"]) && isset($_POST["pass"]) && isset($_POST["ip"])){
         $_SESSION["ip"] = $_POST["ip"];
         $_SESSION["name"] = $_POST["name"];
         $_SESSION["pass"] = $_POST["pass"];
@@ -230,7 +227,14 @@ if (isset($_POST["dhcp"])){
 require("menu/dhcp.php");       //TODO[x]
 require("menu/egyeb.php");      //TODO[]
 require("menu/custom.php");     //TODO[]
-
+/*
+TODO[] create controller.php
+TODO[] implement switchcase system
+TODO[] file writing output 
+TODO[] redirecting back($_SESSION["status"])
+TODO[] error pages
+TODO[port states into the portCon]
+*/
 ?>
 </body>
 </html>

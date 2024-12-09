@@ -1,18 +1,18 @@
 
-barnaRuter>enable
+e>enable
 Password: 
-barnaRuter#terminal len 0
-barnaRuter#show running-config
+e#terminal len 0
+e#show running-config
 Building configuration...
 
-Current configuration : 1346 bytes
+Current configuration : 952 bytes
 !
 version 12.4
 service timestamps debug datetime msec
 service timestamps log datetime msec
 no service password-encryption
 !
-hostname barnaRuter
+hostname e
 !
 boot-start-marker
 boot-end-marker
@@ -20,35 +20,17 @@ boot-end-marker
 enable password e
 !
 no aaa new-model
-memory-size iomem 5
-no ip icmp rate-limit unreachable
 ip cef
 !
 !
-no ip dhcp use vrf connected
-ip dhcp excluded-address 10.0.0.5
-ip dhcp excluded-address 10.0.0.6
-!
-ip dhcp pool penisz
-   default-router 10.0.0.1 
-   dns-server 8.8.8.8 
-!
-ip dhcp pool penisz2
-   default-router 100.0.0.1 
-   dns-server 8.8.8.8 
 !
 !
-no ip domain lookup
 ip domain name e
-!
-multilink bundle-name authenticated
-!
-!
+ip auth-proxy max-nodata-conns 3
+ip admission max-nodata-conns 3
 !
 !
-!
-!
-!
+voice-card 0
 !
 !
 !
@@ -64,21 +46,16 @@ multilink bundle-name authenticated
 !
 !
 username e password 0 e
-archive
- log config
-  hidekeys
-! 
 !
 !
-!
-ip tcp synwait-time 5
 ip ssh version 2
+! 
 !
 !
 !
 !
 interface FastEthernet0/0
- ip address dhcp
+ ip address 10.0.0.1 255.0.0.0
  duplex auto
  speed auto
 !
@@ -88,21 +65,22 @@ interface FastEthernet0/1
  duplex auto
  speed auto
 !
-interface FastEthernet1/0
+interface Serial0/2/0
  no ip address
  shutdown
- duplex auto
- speed auto
+ no fair-queue
+ clock rate 125000
+!
+interface Serial0/2/1
+ no ip address
+ shutdown
+ clock rate 125000
 !
 ip forward-protocol nd
 !
 !
-no ip http server
+ip http server
 no ip http secure-server
-!
-no cdp log mismatch duplex
-!
-!
 !
 !
 !
@@ -117,22 +95,15 @@ control-plane
 !
 !
 !
-!
 line con 0
- exec-timeout 0 0
- privilege level 15
- logging synchronous
 line aux 0
- exec-timeout 0 0
- privilege level 15
- logging synchronous
 line vty 0
  login local
  transport input ssh
 line vty 1 4
  login
 !
-!
+scheduler allocate 20000 1000
 end
 
-barnaRuter#
+e#
