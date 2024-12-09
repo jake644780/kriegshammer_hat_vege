@@ -2,7 +2,7 @@
     <div class="content-box-wrapper">
         <!-- Középső doboz -->
         <div class="center-box">
-        <form action="Nmenu.php" method="POST" class="menu-form">
+        <form action="controller.php" method="POST" class="menu-form">
         <label for="ports" class="text-label">válassz ki egy portot:</label>
         <select id="ports" class="dropdown text-box" name ="port">;
             <?php
@@ -26,13 +26,32 @@
         
                 <?php
 
-            if (!($out === "") && $_SESSION["last"] ===    2){
-                echo '<div class="k-box"><div class="k-title">Kimenet</div><p>';
-                $snip = explode("conf t", $out);
-                echo nl2br(htmlspecialchars($snip[1]));
-                echo '</p></div>';
+if ($_SESSION["last"] === 2) {
+  echo '<div class="k-box"><div class="k-title">Kimenet</div><p>';
+  
+  $out = file_get_contents("output.txt");
+  $snip = explode("conf t", $out);
+  echo nl2br(htmlspecialchars($snip[1]));
+  echo '</p></div>';
 
-            }
+  /*
+  $ports_for_tables = [];
+  $lines = explode("\n",$snip[1]);
+  for ($i = 0; $i < count($lines); $i++) if (preg_match('^(\S+)\s+(\S+)\s+(YES|NO)\s+(\S+)\s+(\S+.*\S)\s+(up|down)$', $lines[$i])) $ports_for_tables[] = $lines[$i];
+  */
+    
+    // Split $snip into lines and capture port lines
+    $ports_for_tables = [];
+    $lines = explode("\n", $snip[1]);
+    for ($i = 0; $i < count($lines); $i++) {
+        if (preg_match('^(\S+)\s+(\S+)\s+(YES|NO)\s+(\S+)\s+(.+?)\s+(up|down)$/', $lines[$i])) {
+            $ports_for_tables[] = $lines[$i]; // Store the matched port line
+        }
+    }
+
+}
+
+
                 
             ?>
     </div>

@@ -102,7 +102,7 @@ if (isset($_POST["show_running"])){
     $ssh->reset();
     $ssh->disconnect();
     $_SESSION["last"] = 1;
-}
+    }
 require("menu/show.php");       //TODO[x]
 if (isset($_POST["ip_config"])){
     $ssh = new SSH2($_SESSION["ip"]);
@@ -130,7 +130,7 @@ if (isset($_POST["ip_config"])){
         $_SESSION["last"] = 2;
     }
 
-}
+    }
 require("menu/ipconfig.php");   //TODO[x]
 if (isset($_POST["route"])){
     $ssh = new SSH2($_SESSION["ip"]);
@@ -152,7 +152,7 @@ if (isset($_POST["route"])){
         $ssh->disconnect();
         $_SESSION["last"] = 3;
     }
-}
+    }
 require("menu/route.php");      //TODO[x]
 if (isset($_POST["portCon"])){
     $ssh = new SSH2($_SESSION["ip"]);
@@ -181,7 +181,7 @@ if (isset($_POST["portCon"])){
         $ssh->disconnect();
         $_SESSION["last"] = 4;
     }
-}
+    }
 require("menu/port.php");       //TODO[x]
 if (isset($_POST["dhcp"])){
     $ssh = new SSH2($_SESSION["ip"]);
@@ -223,17 +223,17 @@ if (isset($_POST["dhcp"])){
         $_SESSION["last"] = 5;
         
     }  
-}
+    }
 require("menu/dhcp.php");       //TODO[x]
 require("menu/egyeb.php");      //TODO[]
 require("menu/custom.php");     //TODO[]
 /*
-TODO[] create controller.php
-TODO[] implement switchcase system
-TODO[] file writing output 
-TODO[] redirecting back($_SESSION["status"])
+TODO[x] create controller.php
+TODO[x] implement switchcase system
+TODO[x] file writing output 
+TODO[x] redirecting back($_SESSION["status"])
 TODO[] error pages
-TODO[port states into the portCon]
+TODO[]port states into the portCon
 */
 ?>
 </body>

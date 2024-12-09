@@ -1,3 +1,9 @@
+<?php
+session_start();
+$_SESSION["last"] = 99;
+
+?>
+
 <!DOCTYPE html>
 <html lang="hu">
 <head>
@@ -29,7 +35,7 @@
                 
                 <div class="input-group">
                     <i class="fas fa-network-wired"></i>
-                    <input type="text" id="ip" name="ip" placeholder="IP cím" value="192.168.1.52" required>
+                    <input type="text" id="ip" name="ip" placeholder="IP cím" required>
                 </div>
 
                 <div class="input-group">

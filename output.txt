@@ -1,109 +1,17 @@
 
-e>enable
+barnaRuter>enable
 Password: 
-e#terminal len 0
-e#show running-config
-Building configuration...
-
-Current configuration : 952 bytes
-!
-version 12.4
-service timestamps debug datetime msec
-service timestamps log datetime msec
-no service password-encryption
-!
-hostname e
-!
-boot-start-marker
-boot-end-marker
-!
-enable password e
-!
-no aaa new-model
-ip cef
-!
-!
-!
-!
-ip domain name e
-ip auth-proxy max-nodata-conns 3
-ip admission max-nodata-conns 3
-!
-!
-voice-card 0
-!
-!
-!
-!
-!
-!
-!
-!
-!
-!
-!
-!
-!
-!
-username e password 0 e
-!
-!
-ip ssh version 2
-! 
-!
-!
-!
-!
-interface FastEthernet0/0
- ip address 10.0.0.1 255.0.0.0
- duplex auto
- speed auto
-!
-interface FastEthernet0/1
- no ip address
- shutdown
- duplex auto
- speed auto
-!
-interface Serial0/2/0
- no ip address
- shutdown
- no fair-queue
- clock rate 125000
-!
-interface Serial0/2/1
- no ip address
- shutdown
- clock rate 125000
-!
-ip forward-protocol nd
-!
-!
-ip http server
-no ip http secure-server
-!
-!
-!
-!
-control-plane
-!
-!
-!
-!
-!
-!
-!
-!
-!
-line con 0
-line aux 0
-line vty 0
- login local
- transport input ssh
-line vty 1 4
- login
-!
-scheduler allocate 20000 1000
-end
-
-e#
+barnaRuter#terminal len 0
+barnaRuter#conf t 
+Enter configuration commands, one per line.  End with CNTL/Z.
+barnaRuter(config)#interface FastEthernet0/1
+barnaRuter(config-if)#ip address 7.7.75.3 255.255.248.0
+barnaRuter(config-if)#no sh
+barnaRuter(config-if)#exit
+barnaRuter(config)#exit
+barnaRuter#show ip int br
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            192.168.1.59    YES DHCP   up                    up      
+FastEthernet0/1            7.7.75.3        YES manual up                    up      
+FastEthernet1/0            172.16.0.1      YES NVRAM  up                    up      
+barnaRuter#

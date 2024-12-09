@@ -30,30 +30,84 @@ if (isset($_POST["action"])){
         break;
 
         case "ip_config":
-
+            $in .= "conf t \ninterface " . $_POST["port"] . "\nip address " . $_POST["address"] . " " . $_POST["mask"] . "\n";
+            if (isset($_POST["felkapcs"])) $in .= "no sh\n";
+            $in .= "exit\nexit\nshow ip int br\n";
+            $_SESSION["last"] = 2;
         break;
         
         case "route":
+            $in .="
+            conf t\n
+            ";
+            $in .= "
+            ip route " . $_POST["network"] . " " . $_POST["mask"] . " " . $_POST["next"] . "\n
+            do show ip route static\n
+            ";
+            $_SESSION["last"] = 3;
 
         break;
             
         case "portCon":
-            $in .= "conf t\n";
+            $in .= "
+            conf t\n
+            ";
             for($i = 0;$i < sizeof($ports); $i++){
-                $in .= "interface" . $ports[$i] . "\n";
-                  if (isset($_POST[$ports[$i]])) $in .= "no ";
-                  $in .= "shutdown\n";
-                  $in .= "exit\n";
+                $in .= "
+                interface" . $ports[$i] . "\n
+                ";
+                if (isset($_POST[$ports[$i]])) $in .= "no ";
+                $in .= "
+                shutdown\n
+                exit\n
+                ";
             }
-            $in .= "do show ip int br\n";
+            $in .= "
+            do show ip int br\n
+            ";
             $_SESSION["last"] = 4;
         break;
                 
         case "dhcp":
+            if (isset($_POST["medence"]) && !empty($_POST["medence"])) {
+                $in .= "
+                ip dhcp pool " . $_POST["medence"] . "\n
+                network " . $_POST["network"] . " " . $_POST["mask"] . "\n
+                ";
+            }
+            if (isset($_POST["def"]) && !empty($_POST["def"])){
+                $in .= "
+                default-router " . $_POST["def"] . "\n
+                ";
+            }
+            if (isset($_POST["dns"]) && !empty($_POST["dns"])){
+                $in .= "
+                dns-server " . $_POST["dns"] . "\n
+                ";
+            }
+            $in .= "
+            exit\n
+            ";
+            if (isset($_POST["excluded_addresses"]) && !empty($_POST["excluded_addresses"])) { 
+                for ($i = 0; $i < sizeof($_POST["excluded_addresses"]); $i++) {
+                    if (!empty($_POST["excluded_addresses"][$i])) {
+                        $in .= "ip dhcp excluded-address " . $_POST["excluded_addresses"][$i] . "\n";
+                    }
+                }
+            }
 
+            
+            $in .= "
+            do sh ip dhcp pool\n
+            ";
+            
+            
+
+            
+            $_SESSION["last"] = 5;
         break;
                     
-        case "show":
+        case "servers": //work in progress!
 
         break;
     }
@@ -62,34 +116,21 @@ if (isset($_POST["action"])){
         file_put_contents('output.txt', $out);
         $ssh->reset();
         $ssh->disconnect();
+        header("location: Nmenu.php");
     }
 }
 
 
 
-if (isset($_POST["show_running"])){
-    $ssh = new SSH2($_SESSION["ip"]);
-    if (!$ssh->login($_SESSION["name"], $_SESSION["pass"])){
-        echo "no show runin";
-        exit;
-    }else{
 
-        $ssh->write("enable\n");
-        $ssh->write($_SESSION["pass"] . "\n");
-        $ssh->write("terminal len 0\n");
-        $ssh->write("show running-config\n");
-        $out = $ssh->read();
-        file_put_contents('output.txt', $out);
-        //echo nl2br(htmlspecialchars($out));
-        
-    }
-    $ssh->reset();
-    $ssh->disconnect();
-    $_SESSION["last"] = 1;
-}
+
 /*
 creating a stringbuffer with absolute pontosság and then writing that one buffer in with one command
 
 */
 
+       
+        
+        
+   
 ?>

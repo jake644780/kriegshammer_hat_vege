@@ -182,7 +182,7 @@
     }
 
     .text-box {
-        width: 100%;
+        width: 212px;
         padding: 10px;
         font-size: 16px;
         border: 2px solid #cccccc;
