@@ -1,23 +1,51 @@
 
 <script>
-    function showDiv(divNumber) {
-        // Get all div elements with the class "content"
-        const divs = document.querySelectorAll('.content');
-        
-        // Hide all divs
-        divs.forEach(div => {
-            div.style.display = 'none';
-        });
     
-        // Show the selected div
-        const selectedDiv = document.getElementById(`content${divNumber}`);
-        if (selectedDiv) {
-            selectedDiv.style.display = 'flex';
-        }
+
+    function validateInput(inputId, buttonId) {
+    // Get the input value
+    const inputValue = document.getElementById(inputId).value;
+    
+    // Define the regex pattern (alphanumeric, no spaces)
+    const regexPattern = /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/;
+
+    // Get the button element
+    const button = document.getElementById(buttonId);
+
+    // Check if the input value matches the regex pattern
+    if (regexPattern.test(inputValue)) {
+        button.disabled = false;  // Enable the button
+    } else {
+        button.disabled = true;   // Disable the button
     }
-    
-    
-    </script>
+}
+
+   
+
+<?php
+
+for ($i = 2; $i < 7;$i++){
+    echo "
+    document.getElementById('input" . $i . "').addEventListener('input', function() {
+        validateInput('input" . $i . "', 'submitbutton" . $i . "');
+    });";
+}
+echo "window.onload = function() {";
+for ($i = 1; $i < 7;$i++){
+    echo "
+    validateInput('input" . $i . "', 'submitbutton" . $i ."');
+    ";
+
+}
+echo "};";
+
+
+
+
+?>
+  
+</script>
+
 
 
 <style>
@@ -277,24 +305,6 @@
         background-image: url("images/galaxy_seamless.avif");
     }
 
-
-    /*
-.alma{
-    background: url('nyan.gif') repeat-x;  
-      background-size: cover;  
-      animation: moveBackground 10s linear infinite;  
-}
-
-@keyframes moveBackground {
-    0% {
-      background-position: 0 0;
-    }
-    100% {
-      background-position: -10000px 0; 
-    }
-  }
-
-*/
     .content {
 
 
@@ -309,16 +319,20 @@
     flex-wrap: nowrap; /* Ensure all elements stay in one line */
     overflow: hidden; /* Prevent overflow issues */
     white-space: nowrap; /* Prevent button text from wrapping */
-}
+    }
 
-.lower-bar button {
+    .lower-bar button {
     flex: 1 1 0; /* Ensure equal sizes */
     min-width: 100px; /* Prevent buttons from becoming too small */
     max-width: 150px; /* Optional: Set a maximum size */
     text-align: center;
-}
+    }
 
-/* Responsive Design */
+    .continue-button:disabled {
+    background-color: #ccc; /* Grey color when disabled */
+    color: #777; /* Lighter text color */
+    cursor: not-allowed; /* Change cursor to indicate it's not clickable */
+    }
 
 
 </style>

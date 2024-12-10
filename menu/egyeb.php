@@ -10,10 +10,10 @@
               <option value="dns">      DNS</option>
               <option value="dhcp">     DHCP</option>
             </select>
-            <label for="text1" class="text-label">cím</label>
-            <input type="text" id="ipv4-input" class="text-box" name="ip" placeholder="Enter IPv4 (e.g., 10.0.0.1)" maxlength="15">
+            <label for="text1" class="text-label" >cím</label>
+            <input type="text" id="input6" class="text-box" name="ip" placeholder="Enter IPv4 (e.g., 10.0.0.1)" id="input6" maxlength="15">
             <input type="hidden" name="type" value="egyeb">
-            <input type="submit" class="continue-button" name="action" value="Tovább">
+            <input type="submit" class="continue-button" name="action" value="Tovább" id="submitbutton6">
             </form>
         </div>
 

@@ -52,9 +52,24 @@ if ($ssh->login($_SESSION["name"], $_SESSION["pass"])) {
 
 
 
-
-
 ?>
+
+<script>
+function showDiv(divNumber) {
+    // Get all div elements with the class "content"
+    const divs = document.querySelectorAll('.content');
+    
+    // Hide all divs
+    divs.forEach(div => {
+        div.style.display = 'none';
+    });
+
+    // Show the selected div
+    const selectedDiv = document.getElementById(`content${divNumber}`);
+    if (selectedDiv) {
+        selectedDiv.style.display = 'flex';
+    }
+}</script>
 
 
 <!DOCTYPE html>

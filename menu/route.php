@@ -4,7 +4,7 @@
     <div class="center-box">
       <form action="controller.php" method="POST" class="menu-form">
         <label for="text1" class="text-label">hálózat címe</label>
-        <input type="text" id="ipv4-input" class="text-box" name="network" placeholder="Enter IPv4 (e.g., 10.0.0.1)" maxlength="15">
+        <input type="text" id="input3" class="text-box" name="network" placeholder="Enter IPv4 (e.g., 10.0.0.1)" maxlength="15">
         <label for="text2" class="text-label">hálózati maszk</label>
         <select name="mask" class="dropdown text-box">
           <?php
@@ -36,7 +36,7 @@
         </div>
 
         <input type="hidden" name="type" value="route">
-        <input type="submit" class="continue-button" name="action" value="Tovább">
+        <input type="submit" class="continue-button" name="action" id="submitbutton3" value="Tovább">
 
     </div>
 
