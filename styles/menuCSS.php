@@ -24,19 +24,27 @@
 
 <?php
 
-for ($i = 2; $i < 6;$i++){
+for ($i = 2; $i < 4;$i++){
     echo "
     document.getElementById('input" . $i . "').addEventListener('input', function() {
         validateInput('input" . $i . "', 'submitbutton" . $i . "');
     });";
 }
+
+echo "document.getElementById('input6').addEventListener('input', function() {
+        validateInput('input6', 'submitbutton6');
+    });";
 echo "window.onload = function() {";
-for ($i = 2; $i < 6;$i++){
+
+for ($i = 2; $i < 4;$i++){
     echo "
-    validateInput('input" . $i . "', 'submitbutton" . $i ."');
+    validateInput('input" . $i . "', 'submitbutton" . $i ."');\n
     ";
 
 }
+
+echo "validateInput('input6', 'submitbutton6');\n";
+
 echo "};";
 
 
@@ -85,7 +93,6 @@ echo "};";
     }
 
     .lower-bar button {
-        background-color: #d3d3d3;
         color: black;
         font-size: 18px;
         font-weight: bold;

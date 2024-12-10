@@ -68,7 +68,20 @@ function showDiv(divNumber) {
     const selectedDiv = document.getElementById(`content${divNumber}`);
     if (selectedDiv) {
         selectedDiv.style.display = 'flex';
+
     }
+
+    const buttons = document.querySelectorAll(".butto");
+    buttons.forEach(button => {
+        button.style.backgroundColor = '#d3d3d3';
+        button.style.color = '#000';
+
+    const selectedButton = document.getElementById(`butto${divNumber}`);
+    selectedButton.style.backgroundColor = '#00008b';
+    selectedButton.style.color = '#fff';
+
+    });
+
 }</script>
 
 
@@ -92,13 +105,13 @@ function showDiv(divNumber) {
 
         </div>
         <div class="lower-bar">
-            <button onclick="showDiv(1)">show running</button>
-            <button onclick="showDiv(2)">ip config</button>
-            <button onclick="showDiv(3)">static route</button>
-            <button onclick="showDiv(7)" style="background-color: blue;">Custom</button>
-            <button onclick="showDiv(4)">turn on port</button>
-            <button onclick="showDiv(5)">dhcp</button>
-            <button onclick="showDiv(6)">egyéb</button>
+            <button class="butto" id="butto1" onclick="showDiv(1)">show running</button>
+            <button class="butto" id="butto2" onclick="showDiv(2)">ip config</button>
+            <button class="butto" id="butto3" onclick="showDiv(3)">static route</button>
+            <button class="butto" id="butto7" onclick="showDiv(7)" style="background-color: blue;">Custom</button>
+            <button class="butto" id="butto4" onclick="showDiv(4)">turn on port</button>
+            <button class="butto" id="butto5" onclick="showDiv(5)">dhcp</button>
+            <button class="butto" id="butto6" onclick="showDiv(6)">egyéb</button>
 
         </div>
     </div>
