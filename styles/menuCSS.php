@@ -22,6 +22,10 @@
 
 <style>
 
+    body{
+        margin: 0;
+        padding: 0;
+    }
     *{
         font-family: 'Poppins', 'sans-serif';
     }
@@ -182,7 +186,8 @@
     }
 
     .text-box {
-        width: 212px;
+        width: 300px;
+        max-width: 300px;
         padding: 10px;
         font-size: 16px;
         border: 2px solid #cccccc;
@@ -295,4 +300,25 @@
 
         display: none;
     }
+
+    .lower-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Consistent spacing between buttons */
+    flex-wrap: nowrap; /* Ensure all elements stay in one line */
+    overflow: hidden; /* Prevent overflow issues */
+    white-space: nowrap; /* Prevent button text from wrapping */
+}
+
+.lower-bar button {
+    flex: 1 1 0; /* Ensure equal sizes */
+    min-width: 100px; /* Prevent buttons from becoming too small */
+    max-width: 150px; /* Optional: Set a maximum size */
+    text-align: center;
+}
+
+/* Responsive Design */
+
+
 </style>

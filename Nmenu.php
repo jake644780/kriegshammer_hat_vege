@@ -4,7 +4,6 @@ require 'vendor/autoload.php';
 
 use phpseclib3\Net\SSH2;
 
-echo $_SESSION["last"];
 
 if (isset($_POST["name"]) && isset($_POST["pass"]) && isset($_POST["ip"])) {
     $_SESSION["ip"] = $_POST["ip"];
@@ -75,6 +74,7 @@ if ($ssh->login($_SESSION["name"], $_SESSION["pass"])) {
                 <div class="team-name">Kriegshammer</div>
             </div>
             <div class="menu-title">Menü</div>
+
         </div>
         <div class="lower-bar">
             <button onclick="showDiv(1)">show running</button>
@@ -83,7 +83,7 @@ if ($ssh->login($_SESSION["name"], $_SESSION["pass"])) {
             <button onclick="showDiv(7)" style="background-color: blue;">Custom</button>
             <button onclick="showDiv(4)">turn on port</button>
             <button onclick="showDiv(5)">dhcp</button>
-            <button onclick="showDiv(6)">egyéb szolgáltatások</button>
+            <button onclick="showDiv(6)">egyéb</button>
 
         </div>
     </div>
@@ -98,17 +98,24 @@ if ($ssh->login($_SESSION["name"], $_SESSION["pass"])) {
     require("menu/route.php");      //TODO[x]
     require("menu/port.php");       //TODO[x]
     require("menu/dhcp.php");       //TODO[x]
-    require("menu/egyeb.php");      //TODO[]
+    require("menu/egyeb.php");      //TODO[x] 
     require("menu/custom.php");     //TODO[]
+    
     /*
 TODO[x] create controller.php
 TODO[x] implement switchcase system
 TODO[x] file writing output 
 TODO[x] redirecting back($_SESSION["status"])
-TODO[] error pages
 TODO[x]port states into the portCon
 TODO[]input checking on frontend
 TODO[]virtual ajax terminal
+TODO[]table for more visuals
+TODO[] error pages
+ntp
+tftp
+syslog
+dns
+snmp
 */
     ?>
 </body>
@@ -124,46 +131,5 @@ if (isset($_SESSION["last"])) {
     echo "<script>showDiv(" . $_SESSION["last"] . ")</script>";
 }
 
-// if (isset($_POST["dhcp"])){
-//     $ssh = new SSH2($_SESSION["ip"]);
-//     if (!$ssh->login($_SESSION["name"], $_SESSION["pass"])){
-//         echo "no ip config";
-//         exit;
-//     }else{
-
-//         $ssh->write("enable\n");
-//         $ssh->write($_SESSION["pass"] . "\n");
-//         $ssh->write("terminal len 0\n");
-//         $ssh->write("conf t\n");
-
-//         if (isset($_POST["medence"]) && !empty($_POST["medence"])) {
-//             $ssh->write("ip dhcp pool " . $_POST["medence"] . "\n");
-//             $ssh->write("network " . $_POST["network"] . " " . $_POST["mask"] . "\n");
-
-//             if (isset($_POST["def"]) && !empty($_POST["def"])) {
-//                 $ssh->write("default-router " . $_POST["def"] . "\n");
-//             }
-//             if (isset($_POST["dns"]) && !empty($_POST["dns"])) {
-//                 $ssh->write("dns-server " . $_POST["dns"] . "\n");
-//             }
-
-//             $ssh->write("exit\n");
-//         }
-
-//         if (isset($_POST["excluded_addresses"]) && !empty($_POST["excluded_addresses"])) { 
-//             for ($i = 0; $i < sizeof($_POST["excluded_addresses"]); $i++) {
-//                 if (!empty($_POST["excluded_addresses"][$i])) {
-//                     $ssh->write("ip dhcp excluded-address " . $_POST["excluded_addresses"][$i] . "\n");
-//                 }
-//             }
-//         }
-
-//         $out = $ssh->read();
-//         $ssh->reset();
-//         $ssh->disconnect();
-//         $_SESSION["last"] = 5;
-
-//     }  
-//     }
-
 ?>
+

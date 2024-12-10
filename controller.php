@@ -76,9 +76,24 @@ if (isset($_POST["action"])){
             $_SESSION["last"] = 5;
             break;
                     
-        case "servers": //work in progress!
-
+        case "egyeb": 
+            $in .= "conf t\n";
+            switch ($_POST["service"]){
+                case "ntp":
+                    $in .= "ntp server " . $_POST["ip"] . "\n";
+                    break;
+                case "syslog":
+                    $in .= "logging " . $_POST["ip"] . "\n";
+                    break;
+                case "dns":
+                    $in .= "ip domain-lookup\n ip name-server " . $_POST["ip"];
+                    break;
+                case "dhcp":
+                    $in .= "ip helper-address " . $_POST["ip"];
+            }
+            $_SESSION["last"] = 6;
             break;
+
     }
         $ssh->write($in);
         $out = $ssh->read();
