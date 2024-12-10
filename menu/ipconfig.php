@@ -20,7 +20,7 @@
         </select><br>
         <label><input type="checkbox" name="felkapcs" class="text-label" value="felkapcs">port felkapcsolása</label><br>
         <input type="hidden" name="type" value="ip_config">
-        <input type="submit" class="continue-button" name="action" value="Tovább" id="submitbutton2">
+        <input type="submit" class="continue-button" name="action" value="Tovább" id="submitbutton2" disabled>
       </form>
     </div>
   </div>

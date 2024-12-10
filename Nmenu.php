@@ -122,7 +122,7 @@ TODO[x] implement switchcase system
 TODO[x] file writing output 
 TODO[x] redirecting back($_SESSION["status"])
 TODO[x]port states into the portCon
-TODO[]input checking on frontend
+TODO[x]input checking on frontend
 TODO[]virtual ajax terminal
 TODO[]table for more visuals
 TODO[] error pages

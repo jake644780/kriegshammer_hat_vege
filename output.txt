@@ -2,7 +2,24 @@
 barnaRuter>enable
 Password: 
 barnaRuter#terminal len 0
-barnaRuter#conf t
+barnaRuter#
+barnaRuter#
+barnaRuter#            conf t
 Enter configuration commands, one per line.  End with CNTL/Z.
-barnaRuter(config)#logging 1.1.1.1
+barnaRuter(config)#
+barnaRuter(config)#
+barnaRuter(config)#            interface FastEthernet0/0
+barnaRuter(config-if)#no shutdown
+barnaRuter(config-if)#exit
+barnaRuter(config)#interface FastEthernet0/1
+barnaRuter(config-if)#shutdown
+barnaRuter(config-if)#exit
+barnaRuter(config)#interface FastEthernet1/0
+barnaRuter(config-if)#shutdown
+barnaRuter(config-if)#exit
+barnaRuter(config)#do show ip int br
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            192.168.1.63    YES DHCP   up                    up      
+FastEthernet0/1            7.7.4.1         YES NVRAM  administratively down down    
+FastEthernet1/0            172.16.0.1      YES NVRAM  administratively down down    
 barnaRuter(config)#

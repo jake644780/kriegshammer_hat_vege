@@ -24,14 +24,14 @@
 
 <?php
 
-for ($i = 2; $i < 7;$i++){
+for ($i = 2; $i < 6;$i++){
     echo "
     document.getElementById('input" . $i . "').addEventListener('input', function() {
         validateInput('input" . $i . "', 'submitbutton" . $i . "');
     });";
 }
 echo "window.onload = function() {";
-for ($i = 1; $i < 7;$i++){
+for ($i = 2; $i < 6;$i++){
     echo "
     validateInput('input" . $i . "', 'submitbutton" . $i ."');
     ";
