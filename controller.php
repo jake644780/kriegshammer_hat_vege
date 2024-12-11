@@ -93,11 +93,14 @@ if (isset($_POST["action"])){
             }
             $_SESSION["last"] = 6;
             break;
+        case "custom":
+            break;
 
     }
         $ssh->write($in);
         $out = $ssh->read();
         file_put_contents('output.txt', $out);
+        $ssh->write("end\nwrite\n");
         $ssh->reset();
         $ssh->disconnect();
         header("location: Nmenu.php");

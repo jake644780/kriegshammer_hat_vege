@@ -23,5 +23,17 @@
         <input type="submit" class="continue-button" name="action" value="Tovább" id="submitbutton2" disabled>
       </form>
     </div>
+
+          <?php
+    if ($_SESSION["last"] === 2){
+                        echo '<div class="k-box"><div class="k-title">Kimenet</div><p>';
+                        $conf = file_get_contents("output.txt");
+                        $snip = explode("show running-config", $conf);
+                        echo nl2br(htmlspecialchars($snip[1]));
+                        echo '</p></div>';
+
+                    }
+
+                    ?>
   </div>
 </div>

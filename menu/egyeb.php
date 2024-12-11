@@ -13,6 +13,7 @@
             <label for="text1" class="text-label" >cím</label>
             <input type="text" id="input6" class="text-box" name="ip" placeholder="Enter IPv4 (e.g., 10.0.0.1)"  maxlength="15">
             <input type="hidden" name="type" value="egyeb">
+            <br>
             <input type="submit"id="submitbutton6" class="continue-button" name="action" value="Tovább"  disabled>
             </form>
         </div>

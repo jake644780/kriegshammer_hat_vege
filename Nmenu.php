@@ -55,8 +55,13 @@ if ($ssh->login($_SESSION["name"], $_SESSION["pass"])) {
 ?>
 
 <script>
+
+
 function showDiv(divNumber) {
     // Get all div elements with the class "content"
+
+
+    
     const divs = document.querySelectorAll('.content');
     
     // Hide all divs
@@ -66,23 +71,21 @@ function showDiv(divNumber) {
 
     // Show the selected div
     const selectedDiv = document.getElementById(`content${divNumber}`);
-    if (selectedDiv) {
-        selectedDiv.style.display = 'flex';
+    if (selectedDiv) selectedDiv.style.display = 'flex';
 
-    }
 
     const buttons = document.querySelectorAll(".butto");
     buttons.forEach(button => {
         button.style.backgroundColor = '#d3d3d3';
         button.style.color = '#000';
-
+    });
     const selectedButton = document.getElementById(`butto${divNumber}`);
     selectedButton.style.backgroundColor = '#00008b';
     selectedButton.style.color = '#fff';
 
-    });
 
-}</script>
+}
+</script>
 
 
 <!DOCTYPE html>
@@ -108,7 +111,7 @@ function showDiv(divNumber) {
             <button class="butto" id="butto1" onclick="showDiv(1)">show running</button>
             <button class="butto" id="butto2" onclick="showDiv(2)">ip config</button>
             <button class="butto" id="butto3" onclick="showDiv(3)">static route</button>
-            <button class="butto" id="butto7" onclick="showDiv(7)" style="background-color: blue;">Custom</button>
+            <a href="terminal/terminalFront.php"><button class="butto" id="butto7" style="background-color: blue;">Custom</button></a>
             <button class="butto" id="butto4" onclick="showDiv(4)">turn on port</button>
             <button class="butto" id="butto5" onclick="showDiv(5)">dhcp</button>
             <button class="butto" id="butto6" onclick="showDiv(6)">egyéb</button>
@@ -139,11 +142,6 @@ TODO[x]input checking on frontend
 TODO[]virtual ajax terminal
 TODO[]table for more visuals
 TODO[] error pages
-ntp
-tftp
-syslog
-dns
-snmp
 */
     ?>
 </body>

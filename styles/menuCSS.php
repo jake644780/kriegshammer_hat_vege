@@ -307,10 +307,24 @@ echo "};";
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
+    
 
     .banan {
-        background-image: url("images/galaxy_seamless.avif");
+        background-image: url('images/cica.jpg');
+    background-repeat: repeat;  /* Ensure the image repeats */
+    background-size: 100% 100%;  /* Optional: scale the image if needed */
+    margin: 0;  /* Remove default margin */
+    height: 100vh; /* Ensure the body takes up the full height */
+    animation: scrollBackground 60s linear infinite;  
     }
+    @keyframes scrollBackground {
+    0% {
+        background-position: 0 0; /* Start position (top-left corner) */
+    }
+    100% {
+        background-position: 100% 100%; /* End position (bottom-right corner) */
+    }
+}
 
     .content {
 
@@ -339,7 +353,10 @@ echo "};";
     background-color: #ccc; /* Grey color when disabled */
     color: #777; /* Lighter text color */
     cursor: not-allowed; /* Change cursor to indicate it's not clickable */
+  display: flex;  /* This will make the div a flex container */
+  justify-content: center; /* Center items horizontally */
     }
+
 
 
 </style>
