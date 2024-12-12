@@ -93,12 +93,13 @@ if (isset($_POST["action"])){
                 $_SESSION["last"] = 6;
                 break;
             case "custom":
-                $in .= $_POST["custom"];
+                $in .= $_POST["custom"] . "\n";
                 $_SESSION["last"] = 7;
                 break;
 
         }
             $ssh->write($in);
+            sleep(3);
             $out = $ssh->read();
             file_put_contents('../texts/output.txt', $out);
             $ssh->write("end\nwrite\n");
