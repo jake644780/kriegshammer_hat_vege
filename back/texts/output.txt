@@ -2,9 +2,11 @@
 barnaRuter>enable
 Password: 
 barnaRuter#terminal len 0
-barnaRuter#show running | include ip route
-ip route 10.10.10.0 255.255.255.248 FastEthernet0/0
-ip route 69.0.0.0 255.255.0.0 Serial0/1
-ip route 169.0.0.0 255.255.255.248 Serial0/1
 barnaRuter#
 barnaRuter#
+barnaRuter#                conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+barnaRuter(config)#
+barnaRuter(config)#
+barnaRuter(config)#                interface FastEthernet0/0
+barnaRuter(config-if)#shutdown

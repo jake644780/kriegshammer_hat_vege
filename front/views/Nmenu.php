@@ -52,7 +52,7 @@ try {
     }
 } catch (Exception $e) {
     file_put_contents("error.txt", $e);
-    header("location: error.php?error=login");
+    header("location: error.html?error=login");
 }
 
 
@@ -80,14 +80,14 @@ try {
             <div class="menu-title">Menü</div>
 
         </div>
-        <div class="lower-bar">
+        <div class="lower-bar alma">
             <button class="butto" id="butto1" onclick="showDiv(1)">show running</button>
-            <button class="butto" id="butto2" onclick="showDiv(2)">ip config</button>
-            <button class="butto" id="butto3" onclick="showDiv(3)">static route</button>
-            <button class="butto" id="butto4" onclick="showDiv(4)">turn on port</button>
+            <button class="butto" id="butto2" onclick="showDiv(2)">ip cím beállítás</button>
+            <button class="butto" id="butto3" onclick="showDiv(3)">statikus útvonal</button>
+            <button class="butto" id="butto4" onclick="showDiv(4)">interfészek</button>
             <button class="butto" id="butto5" onclick="showDiv(5)">dhcp</button>
             <button class="butto" id="butto6" onclick="showDiv(6)">egyéb</button>
-            <button class="butto" id="butto7" onclick="showDiv(7)">Custom</button>
+            <button class="butto" id="butto7" onclick="showDiv(7)">custom</button>
 
         </div>
     </div>

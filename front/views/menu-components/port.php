@@ -9,8 +9,8 @@
         <?php
         for ($i = 0; $i < count($_SESSION["ports"]); $i++) {
           // Set the checkbox to be checked if the port is up
-          $checked = ((strpos($_SESSION["portStatus"][$i] ,"up") !== false)) ? "checked" : ""; // Assuming "up" indicates the port is active
-      
+          $checked = ((strpos($_SESSION["portStatus"][$i], "up") !== false)) ? "checked" : ""; // Assuming "up" indicates the port is active
+
           echo '
           <div class="port-row">
               <span class="port-name">' . $_SESSION["ports"][$i] . '</span>
@@ -20,8 +20,8 @@
               </label>
               
           </div>';
-      }
-      
+        }
+
 
         ?>
 

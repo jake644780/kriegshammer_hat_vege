@@ -27,7 +27,7 @@ if (isset($_POST["action"])){
             
             case "route":
                 $in .="conf t\n";
-                $in .= "ip route " . $_POST["network"] . " " . $_POST["mask"] . " " . $_POST["next"] . "\ndo show ip route static\n";
+                $in .= "ip route " . $_POST["network"] . " " . $_POST["mask"] . " " . $_POST["next"] . "\ndo show running | include ip route\n";
                 $_SESSION["last"] = 3;
 
                 break;
@@ -99,7 +99,6 @@ if (isset($_POST["action"])){
 
         }
             $ssh->write($in);
-            sleep(3);
             $out = $ssh->read();
             file_put_contents('../texts/output.txt', $out);
             $ssh->write("end\nwrite\n");

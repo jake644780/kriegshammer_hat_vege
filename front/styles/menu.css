@@ -308,9 +308,10 @@ body{
     border-color: #FFA500;
     }
 .continue-button {
-    background-color: #FFA500;
+    background-color: #003bff;
     width: 440px;
-    color: #000000;
+    max-width: 440px;
+    color: #fff;
     font-size: 18px;
     font-weight: bold;
     padding: 10px;
@@ -412,7 +413,11 @@ body{
     min-width: 100px; /* Prevent buttons from becoming too small */
     max-width: 150px; /* Optional: Set a maximum size */
     text-align: center;
+    font-size: 18px;
+    padding: 16px;
+
     }
+    
 .continue-button:disabled {
     background-color: #ccc; /* Grey color when disabled */
     color: #777; /* Lighter text color */
@@ -432,4 +437,5 @@ textarea {
     }
 
 
-    
+
+

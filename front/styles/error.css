@@ -1,5 +1,10 @@
-body.banana {
-    background-image: url("images/galaxy_seamless.avif");
+.body {
+    background-image: url('../images/galaxy_seamless.avif'); 
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; 
+
+    background-color: black;
     font-family: Arial, sans-serif;
     color: #333;
     display: flex;
@@ -8,9 +13,10 @@ body.banana {
     height: 100vh;
     margin: 0;
     position: relative;
-}
+}  
 
 .content {
+    
     display: flex;
     flex-direction: column;
     align-items: center;
