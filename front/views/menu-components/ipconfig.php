@@ -2,7 +2,7 @@
   <div class="content-box-wrapper">
     <!-- Középső doboz -->
     <div class="center-box">
-      <form action="controller.php" method="POST" class="menu-form" onsubmit="return validateForm()">
+      <form action="<?php echo $controllerPATH; ?>" method="POST" class="menu-form" onsubmit="return validateForm()">
         <label for="ports" class="text-label">válassz ki egy portot:</label>
         <select id="ports" class="dropdown text-box" name="port">
           <?php
@@ -27,7 +27,7 @@
           <?php
     if ($_SESSION["last"] === 2){
                         echo '<div class="k-box"><div class="k-title">Kimenet</div><p>';
-                        $conf = file_get_contents("output.txt");
+                        $conf = file_get_contents($outputPATH);
                         $snip = explode("show running-config", $conf);
                         echo nl2br(htmlspecialchars($snip[1]));
                         echo '</p></div>';

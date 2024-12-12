@@ -2,7 +2,7 @@
   <div class="content-box-wrapper">
     <!-- Középső doboz -->
     <div class="center-box">
-      <form action="controller.php" method="POST" class="menu-form">
+      <form action="<?php echo $controllerPATH; ?>" method="POST" class="menu-form">
         <label for="text1" class="text-label">hálózat címe</label>
         <input type="text" id="input3" class="text-box" name="network" placeholder="Enter IPv4 (e.g., 10.0.0.1)" maxlength="15">
         <label for="text2" class="text-label">hálózati maszk</label>
@@ -13,7 +13,7 @@
         </select><br>
 
         <!-- Next Hop Selection -->
-        <label for="text2" class="text-label">Next Hop Type:</label>
+        <label for="text2" class="text-label">következő ugrás:</label>
         <fieldset class="text-box">
 
           <label>
@@ -30,7 +30,7 @@
 
           <select id="ports" class="dropdown text-box" name="next">;
             <?php
-            for ($i = 0; $i < sizeof($_SESSION["ports"]); $i++) echo '<option name="' . $_SESSION["ports"][$i] . '" value="' . $_SESSION["ports"][$i] . '">' . $_SESSION["ports"][$i] . '</option>';
+            for ($i = 0; $i < sizeof($_SESSION["ports"]); $i++) echo '<option name="' . $_SESSION["ports"][$i] . '" value="' . $_SESSION["ports"][$i] . '">' . $_SESSION["ports"][$i] . '<option>';
             ?>
           </select>
         </div>
@@ -49,7 +49,7 @@
 
     if ($_SESSION["last"] === 3) {
       echo '<div class="k-box"><div class="k-title">Kimenet</div><p>';
-      $conf = file_get_contents("output.txt");
+      $conf = file_get_contents($outputPATH);
       $snip = explode("conf t", $conf);
       echo nl2br(htmlspecialchars($snip[1]));
       echo '</p></div>';
@@ -58,38 +58,6 @@
     ?>
   </div>
 </div>
-
-
-<script>
-  /*  const ipv4Input = document.getElementById('ipv4-input');
-
-  ipv4Input.addEventListener('input', () => {
-    const cursorPosition = ipv4Input.selectionStart; // Save cursor position
-    let value = ipv4Input.value;
-
-    // Allow only numbers and dots
-    value = value.replace(/[^\d.]/g, '');
-
-    // Split into octets
-    const octets = value.split('.').map((octet) => octet.slice(0, 3)); // Limit each part to 3 digits
-
-    // Rejoin to form the full IP address
-    ipv4Input.value = octets.join('.');
-
-    // Adjust cursor position to maintain a natural typing experience
-    ipv4Input.setSelectionRange(cursorPosition, cursorPosition);
-  });
-
-  ipv4Input.addEventListener('keydown', (event) => {
-    // Prevent entering multiple dots in a row
-    if (event.key === '.' && ipv4Input.value.endsWith('.')) {
-      event.preventDefault();
-    }
-  });
-
-
-  */
-</script>
 
 
 <script>
@@ -122,20 +90,7 @@
       });
     });
 
-    // Handle form submission
-    document.getElementById('submitRoute').addEventListener('click', () => {
-      const ipAddress = document.getElementById('ipAddress').value;
-      const netMask = document.getElementById('netMask').value;
-      const nextHopType = document.querySelector('input[name="nextHopType"]:checked').value;
-
-      let nextHopValue;
-      if (nextHopType === 'port') {
-        nextHopValue = document.getElementById('portSelection').value;
-      } else if (nextHopType === 'address') {
-        nextHopValue = document.getElementById('nextHopAddress').value;
-      }
-
-      alert('Static route added successfully!');
+    
+      
     });
-  });
 </script>

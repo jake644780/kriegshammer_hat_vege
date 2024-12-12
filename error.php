@@ -1,1 +1,0 @@
-<b>nem sikerűt:(</b>

@@ -1,18 +1,17 @@
 <?php
 session_start();
-require 'vendor/autoload.php';
+
+require "../../vendor/autoload.php";
 use phpseclib3\Net\SSH2;
 
 if (isset($_POST["action"])){
     $ssh = new SSH2($_SESSION["ip"]);
     
     if (!$ssh->login($_SESSION["name"], $_SESSION["pass"])){
-        echo "can't log in :("; //TODO[] ERROR PAGE
+        header("location: ../../front/views/error.html");
         exit;
     }else{
-
         $in = "enable\n" . $_SESSION["pass"] . "\n" . "terminal len 0\n";
-        
     switch ($_POST["type"]){
         case "show_running":
             $in .= "show running-config\n";
@@ -94,30 +93,19 @@ if (isset($_POST["action"])){
             $_SESSION["last"] = 6;
             break;
         case "custom":
+            $in .= $_POST["custom"];
+            $_SESSION["last"] = 7;
             break;
 
     }
         $ssh->write($in);
         $out = $ssh->read();
-        file_put_contents('output.txt', $out);
+        file_put_contents('../texts/output.txt', $out);
         $ssh->write("end\nwrite\n");
         $ssh->reset();
         $ssh->disconnect();
-        header("location: Nmenu.php");
+        header("location: ../../front/views/Nmenu.php");
     }
 }
-
-
-
-
-
-/*
-creating a stringbuffer with absolute pontosság and then writing that one buffer in with one command
-
-*/
-
-       
-        
-        
    
 ?>

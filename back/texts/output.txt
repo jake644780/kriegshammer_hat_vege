@@ -1,0 +1,17 @@
+
+barnaRuter>enable
+Password: 
+barnaRuter#terminal len 0
+barnaRuter#conf t 
+Enter configuration commands, one per line.  End with CNTL/Z.
+barnaRuter(config)#interface FastEthernet0/1
+barnaRuter(config-if)#ip address 7.7.4.1 255.255.254.0
+barnaRuter(config-if)#no sh
+barnaRuter(config-if)#exit
+barnaRuter(config)#exit
+barnaRuter#show ip int br
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            192.168.1.67    YES DHCP   up                    up      
+FastEthernet0/1            7.7.4.1         YES manual up                    up      
+FastEthernet1/0            172.16.0.1      YES NVRAM  up                    up      
+barnaRuter#

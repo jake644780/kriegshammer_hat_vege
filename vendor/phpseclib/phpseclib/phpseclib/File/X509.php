@@ -1269,7 +1269,7 @@ class X509
             return false;
         }
 
-        /* TODO:
+        /* TOO:
            "emailAddress attribute values are not case-sensitive (e.g., "subscriber@example.com" is the same as "SUBSCRIBER@EXAMPLE.COM")."
             -- http://tools.ietf.org/html/rfc5280#section-4.1.2.6
 

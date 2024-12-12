@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>miszték pédzs</title>
+</head>
+
+
+
+<body class="banana">
+    <div class="dropdown">
+        <select id="languageDropdown" onchange="translatePage(this.value)">
+            <option value="hu">Magyar</option>
+            <option value="es">spanyol</option>
+            <option value="en">angol</option>
+            <option value="de">német</option>
+            <option value="sk">madarásziai</option>
+            <option value="kz">kazakhstáni</option>
+            <option value="mi">minecraft enchanting table</option>
+        </select>
+    </div>
+
+    <div class="content" id="hu">
+        <div class="content-box-wrapper">
+            <div class="center-box">
+                <h1 class="translate">Hiba</h1>
+                <p id="errorMessage" class="translate">Sajnos nem sikerült a csatlakozás😿 Lehet, itt van a baj:</p>
+                <ol>
+                    <li>
+                        <h2 class="translate">Helyes adatok</h2>
+                        <p class="translate">Győződj meg róla, hogy az összes beírt adat helyes.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">Elérhető-e a router</h2>
+                        <p class="translate">Ellenőrizd, hogy a router be van-e kapcsolva és működik-e.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">Jó-e a kábel</h2>
+                        <p class="translate">Vizsgáld meg, hogy a hálózati kábelek megfelelően csatlakoznak és nincsenek sérülve.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">Biztos van eseshá a routeren</h2>
+                        <p class="translate">Bizonyosodj meg róla, hogy a routeren nincs-e fizikai sérülés vagy probléma.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">Szépen kérted a programot, hogy működjön</h2>
+                        <p class="translate">Ügyelj arra, hogy a programban megfelelő utasításokat adj meg a működéshez.</p>
+
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <a href="belepes.php"><button style="border-radius: 10px;">vissza a belépéshez</button></a>
+    </div>
+    <div class="content" id="es">
+        <div class="content-box-wrapper">
+            <div class="center-box">
+                <h1 class="translate">Error</h1>
+                <p id="errorMessage" class="translate">Lo sentimos, no pudimos conectarnos😿 Puede que el problema esté aquí:</p>
+                <ol>
+                    <li>
+                        <h2 class="translate">Datos correctos</h2>
+                        <p class="translate">Asegúrate de que todos los datos ingresados sean correctos.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">¿El router está disponible?</h2>
+                        <p class="translate">Verifica que el router esté encendido y funcionando.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">¿El cable está bien?</h2>
+                        <p class="translate">Revisa que los cables de red estén conectados correctamente y no estén dañados.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">El router está seguro</h2>
+                        <p class="translate">Asegúrate de que el router no tenga ningún daño físico o problema.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">Le pediste amablemente al programa que funcione</h2>
+                        <p class="translate">Asegúrate de dar las instrucciones correctas al programa para que funcione.</p>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <a href="belepes.php"><button style="border-radius: 10px;">volver a la registración</button></a>
+    </div>
+    <div class="content" id="en">
+        <div class="content-box-wrapper">
+            <div class="center-box">
+                <h1 class="translate">miszték</h1>
+                <p id="errorMessage" class="translate">unforcsunetli, ví kudnüt konnekt😿 hír májt bí dö problem:</p>
+                <ol>
+                    <li>
+                        <h2 class="translate">korrekt data</h2>
+                        <p class="translate">més sőr all dö entörd data iz korrect.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">Iz dö rúter avéjleböl?</h2>
+                        <p class="translate">csekk if dö  rúter iz törnd on end vörking.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">Iz dö káböl okéj?</h2>
+                        <p class="translate">csekk det dö netvörk kébölz ar konnektid properli end not demidzsd.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">de rúter iz széf</h2>
+                        <p class="translate">mék sör dö rúter hez nó demidzs or fizikal problemsz</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">jú eszkd dö progrem nájszli tú vörk</h2>
+                        <p class="translate">mék sör jú gév dö program dö korrect insztráksönz tu vörk.</p>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <a href="belepes.php"><button style="border-radius: 10px;">gő bekk tu login</button></a>
+    </div>
+    <div class="content" id="mi">
+        <div class="content-box-wrapper">
+            <div class="center-box">
+                <h1 class="translate">ᒲ╎ᓭℸ ̣ ᔑꖌᒷ</h1>
+                <p id="errorMessage" class="translate">⚍リ⎓𝙹∷ℸ ̣ ⚍リᔑℸ ̣ ᒷꖎ||, ∴ᒷ ᓵ𝙹⚍ꖎ↸リ'ℸ ̣ ᓵ𝙹リリᒷᓵℸ ̣ 😿 hᒷ∷ᒷ ᒲ╎⊣⍑ℸ ̣ ʖᒷ ℸ ̣ ⍑ᒷ !¡∷𝙹ʖꖎᒷᒲ:</p>
+                <ol>
+                    <li>
+                        <h2 class="translate">ᓵ𝙹∷∷ᒷᓵℸ ̣ ↸ᔑℸ ̣ ᔑ</h2>
+                        <p class="translate">ᒲᔑꖌᒷ ᓭ⚍∷ᒷ ᔑꖎꖎ ℸ ̣ ⍑ᒷ ᒷリℸ ̣ ᒷ∷ᒷ↸ ↸ᔑℸ ̣ ᔑ ╎ᓭ ᓵ𝙹∷∷ᒷᓵℸ ̣.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">Iᓭ ℸ ̣ ⍑ᒷ ∷𝙹⚍ℸ ̣ ᒷ∷ ᔑ⍊ᔑ╎ꖎᔑʖꖎᒷ?</h2>
+                        <p class="translate">ᓵ⍑ᒷᓵꖌ ╎⎓ ℸ ̣ ⍑ᒷ ∷𝙹⚍ℸ ̣ ᒷ∷ ╎ᓭ ℸ ̣ ⚍∷リᒷ↸ 𝙹リ ᔑリ↸ ∴𝙹∷ꖌ╎リ⊣.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">╎ᓭ ℸ ̣ ⍑ᒷ ᓵᔑʖꖎᒷ 𝙹ꖌᔑ||?</h2>
+                        <p class="translate">⍑ᒷᓵꖌ ℸ ̣ ⍑ᔑℸ ̣ ℸ ̣ ⍑ᒷ リᒷℸ ̣ ∴𝙹∷ꖌ ᓵᔑʖꖎᒷᓭ ᔑ∷ᒷ ᓵ𝙹リリᒷᓵℸ ̣ ᒷ↸ !¡∷𝙹!¡ᒷ∷ꖎ|| ᔑリ↸ リ𝙹ℸ ̣ ↸ᔑᒲᔑ⊣ᒷ↸.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">⍑ᒷ ∷𝙹⚍ℸ ̣ ᒷ∷ ╎ᓭ ᓭᔑ⎓ᒷ</h2>
+                        <p class="translate">ᔑꖌᒷ ᓭ⚍∷ᒷ ℸ ̣ ⍑ᒷ ∷𝙹⚍ℸ ̣ ᒷ∷ ⍑ᔑᓭ リ𝙹 !¡⍑||ᓭ╎ᓵᔑꖎ ↸ᔑᒲᔑ⊣ᒷ 𝙹∷ !¡∷𝙹ʖꖎᒷᒲᓭ.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">||𝙹⚍ ᔑᓭꖌᒷ↸ ℸ ̣ ⍑ᒷ !¡∷𝙹⊣∷ᔑᒲ リ╎ᓵᒷꖎ|| ℸ ̣ ∴𝙹∷ꖌ</h2>
+                        <p class="translate">ᒲᔑꖌᒷ ᓭ⚍∷ᒷ ||𝙹⚍ ⊣╎⍊ᒷ ℸ ̣ ⍑ᒷ !¡∷𝙹⊣∷ᔑᒲ ℸ ̣ ⍑ᒷ ᓵ𝙹∷∷ᒷᓵℸ ̣ ╎リᓭℸ ̣ ∷⚍ᓵℸ ̣ ╎𝙹リᓭ ℸ ̣ 𝙹 ∴𝙹∷ꖌ.</p>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <a href="belepes.php"><button style="border-radius: 10px;">⍊╎ᓭᓭ⨅ᔑ ᔑ ʖᒷꖎ!¡ᓭ⍑ᒷ⨅</button></a>
+
+
+    </div>
+    <div class="content" id="sk">
+        <div class="content-box-wrapper">
+            <div class="center-box">
+                <h1 class="translate">Chyba</h1>
+                <p id="errorMessage" class="translate">Bohužiaľ sa nepodarilo pripojiť😿 Možno je problém tu:</p>
+                <ol>
+                    <li>
+                        <h2 class="translate">Správne údaje</h2>
+                        <p class="translate">Uistite sa, že všetky zadané údaje sú správne.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">Je router dostupný?</h2>
+                        <p class="translate">Skontrolujte, či je router zapnutý a funguje.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">Je kábel v poriadku?</h2>
+                        <p class="translate">Skontrolujte, či sú sieťové káble správne zapojené a nie sú poškodené.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">Router je v poriadku</h2>
+                        <p class="translate">Uistite sa, že router nemá žiadne fyzické poškodenie alebo problémy.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">Požiadali ste program slušne, aby fungoval</h2>
+                        <p class="translate">Uistite sa, že programu dávate správne inštrukcie, aby fungoval.</p>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <a href="belepes.php"><button style="border-radius: 10px;">späť na prihlásenie</button></a>
+    </div>
+    <div class="content" id="de">
+        <div class="content-box-wrapper">
+            <div class="center-box">
+                <h1 class="translate">Fehler</h1>
+                <p id="errorMessage" class="translate">Leider konnte keine Verbindung hergestellt werden😿 Möglicherweise liegt das Problem hier:</p>
+                <ol>
+                    <li>
+                        <h2 class="translate">Korrekte Daten</h2>
+                        <p class="translate">Vergewissere dich, dass alle eingegebenen Daten korrekt sind.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">Ist der Router verfügbar?</h2>
+                        <p class="translate">Überprüfe, ob der Router eingeschaltet ist und funktioniert.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">Ist das Kabel in Ordnung?</h2>
+                        <p class="translate">Überprüfe, ob die Netzwerkkabel richtig angeschlossen sind und nicht beschädigt sind.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">Der Router ist sicher</h2>
+                        <p class="translate">Vergewissere dich, dass der Router keine physischen Schäden oder Probleme hat.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">Du hast das Programm höflich gebeten zu funktionieren</h2>
+                        <p class="translate">Vergewissere dich, dass du dem Programm die richtigen Anweisungen gibst, damit es funktioniert.</p>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <a href="belepes.php"><button style="border-radius: 10px;">zurück zum Login</button></a>
+    </div>
+    <div class="content" id="kz">
+        <div class="content-box-wrapper">
+            <div class="center-box">
+                <h1 class="translate">Қателік</h1>
+                <p id="errorMessage" class="translate">Өкінішке қарай, қосылу мүмкін болмады😿 Мүмкін мынадай мәселе болуы мүмкін:</p>
+                <ol>
+                    <li>
+                        <h2 class="translate">Дұрыс мәліметтер</h2>
+                        <p class="translate">Барлық енгізілген мәліметтердің дұрыстығын тексеріңіз.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">Маршрутизатор жұмыс істеп тұр ма?</h2>
+                        <p class="translate">Маршрутизатордың қосылғанын және жұмыс істеп тұрғанын тексеріңіз.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">Кабель дұрыс жалғанған ба?</h2>
+                        <p class="translate">Желі кабелінің дұрыс жалғанғанын және зақымдалмағанын тексеріңіз.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">Маршрутизаторда ақау жоқ па?</h2>
+                        <p class="translate">Маршрутизаторда физикалық зақымдану немесе басқа да мәселелер жоқ па екенін тексеріңіз.</p>
+                    </li>
+                    <li>
+                        <h2 class="translate">Сіз бағдарламадан дұрыс сұраныс жасадыңыз ба?</h2>
+                        <p class="translate">Бағдарламаға дұрыс команда беріп отырғаныңызды тексеріңіз.</p>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <a href="belepes.php"><button style="border-radius: 10px;">кіруге оралу</button></a>
+    </div>
+
+
+    <script src="../scripts/error.js">
+      
+    </script>
+</body>
+
+</html>
