@@ -28,7 +28,7 @@
     if ($_SESSION["last"] === 2){
                         echo '<div class="k-box"><div class="k-title">Kimenet</div><p>';
                         $conf = file_get_contents($outputPATH);
-                        $snip = explode("show running-config", $conf);
+                        $snip = explode("conf t", $conf);
                         echo nl2br(htmlspecialchars($snip[1]));
                         echo '</p></div>';
 

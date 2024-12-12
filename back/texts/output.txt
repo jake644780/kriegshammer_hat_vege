@@ -2,16 +2,139 @@
 barnaRuter>enable
 Password: 
 barnaRuter#terminal len 0
-barnaRuter#conf t 
-Enter configuration commands, one per line.  End with CNTL/Z.
-barnaRuter(config)#interface FastEthernet0/1
-barnaRuter(config-if)#ip address 7.7.4.1 255.255.254.0
-barnaRuter(config-if)#no sh
-barnaRuter(config-if)#exit
-barnaRuter(config)#exit
-barnaRuter#show ip int br
-Interface                  IP-Address      OK? Method Status                Protocol
-FastEthernet0/0            192.168.1.67    YES DHCP   up                    up      
-FastEthernet0/1            7.7.4.1         YES manual up                    up      
-FastEthernet1/0            172.16.0.1      YES NVRAM  up                    up      
+barnaRuter#show running-config
+Building configuration...
+
+Current configuration : 1399 bytes
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname barnaRuter
+!
+boot-start-marker
+boot-end-marker
+!
+enable password e
+!
+no aaa new-model
+memory-size iomem 5
+no ip icmp rate-limit unreachable
+ip cef
+!
+!
+no ip dhcp use vrf connected
+!
+ip dhcp pool pelda
+   network 10.0.0.0 255.0.0.0
+   default-router 10.0.0.1 
+   dns-server 8.8.8.8 
+!
+!
+no ip domain lookup
+ip domain name e
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+username e password 0 e
+archive
+ log config
+  hidekeys
+! 
+!
+!
+!
+ip tcp synwait-time 5
+ip ssh version 2
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address dhcp
+ duplex auto
+ speed auto
+!
+interface Serial0/0
+ no ip address
+ shutdown
+ clock rate 2000000
+!
+interface FastEthernet0/1
+ ip address 7.7.4.1 255.255.254.0
+ duplex auto
+ speed auto
+!
+interface Serial0/1
+ ip address 66.44.77.3 255.255.240.0
+ clock rate 2000000
+!
+interface FastEthernet1/0
+ ip address 172.16.0.1 255.255.192.0
+ duplex auto
+ speed auto
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+!
+no cdp log mismatch duplex
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0
+ login local
+ transport input ssh
+line vty 1 4
+ login
+!
+!
+end
+
 barnaRuter#
