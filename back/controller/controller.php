@@ -96,7 +96,8 @@ if (isset($_POST["action"])){
                 $in .= $_POST["custom"] . "\n";
                 $_SESSION["last"] = 7;
                 break;
-
+            default:
+                header("location: ../../front/views/menu.php");
         }
             $ssh->write($in);
             $out = $ssh->read();
@@ -104,10 +105,10 @@ if (isset($_POST["action"])){
             $ssh->write("end\nwrite\n");
             $ssh->reset();
             $ssh->disconnect();
-            header("location: ../../front/views/Nmenu.php");
+            header("location: ../../front/views/menu.php");
         }
     }catch (Exception $e){
-        file_put_contents("error.txt", $e);
+        file_put_contents("../texts/error.txt", $e);
         header("../../front/views/error.html");
     }
 

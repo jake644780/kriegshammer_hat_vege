@@ -1,6 +1,6 @@
-phpseclib3\Exception\UnableToConnectException: Cannot connect to 192.168.:22. Error 0. php_network_getaddresses: getaddrinfo for 192.168. failed: No such host is known. in C:\xampp\htdocs\kriegshammer_hat_vege\vendor\phpseclib\phpseclib\phpseclib\Net\SSH2.php:1360
+phpseclib3\Exception\UnableToConnectException: Cannot connect to 192.168.1.52:22. Error 10060. A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond in C:\xampp\htdocs\kriegshammer_hat_vege\vendor\phpseclib\phpseclib\phpseclib\Net\SSH2.php:1360
 Stack trace:
 #0 C:\xampp\htdocs\kriegshammer_hat_vege\vendor\phpseclib\phpseclib\phpseclib\Net\SSH2.php(2228): phpseclib3\Net\SSH2->connect()
-#1 C:\xampp\htdocs\kriegshammer_hat_vege\vendor\phpseclib\phpseclib\phpseclib\Net\SSH2.php(2207): phpseclib3\Net\SSH2->sublogin('e')
-#2 C:\xampp\htdocs\kriegshammer_hat_vege\Nmenu.php(18): phpseclib3\Net\SSH2->login('e', 'e')
+#1 C:\xampp\htdocs\kriegshammer_hat_vege\vendor\phpseclib\phpseclib\phpseclib\Net\SSH2.php(2207): phpseclib3\Net\SSH2->sublogin('de')
+#2 C:\xampp\htdocs\kriegshammer_hat_vege\front\views\menu.php(20): phpseclib3\Net\SSH2->login('de', 'sdf')
 #3 {main}

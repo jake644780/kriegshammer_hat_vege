@@ -51,7 +51,7 @@ try {
         exit;
     }
 } catch (Exception $e) {
-    file_put_contents("error.txt", $e);
+    file_put_contents("../../back/texts/error.txt", $e);
     header("location: error.html?error=login");
 }
 
@@ -81,7 +81,7 @@ try {
 
         </div>
         <div class="lower-bar alma">
-            <button class="butto" id="butto1" onclick="showDiv(1)">show running</button>
+            <button class="butto" id="butto1" onclick="showDiv(1)">konfiguráció</button>
             <button class="butto" id="butto2" onclick="showDiv(2)">ip cím beállítás</button>
             <button class="butto" id="butto3" onclick="showDiv(3)">statikus útvonal</button>
             <button class="butto" id="butto4" onclick="showDiv(4)">interfészek</button>

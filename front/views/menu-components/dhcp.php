@@ -47,7 +47,7 @@
                 <div id="excluded-container" class="excluded-container">
                     <input type="text" class="text-label" name="excluded_addresses[]" placeholder="e.g., 192.168.1.50">
                 </div>
-                <button type="button" class="add-button" style="background-color: #00002f;" onclick="addExcludedAddress()">Add Excluded Address</button>
+                <button type="button" class="add-button" style="background-color: #00002f;" onclick="addExcludedAddress()">kitiltott cím hozzáadása</button>
 
                 <input type="hidden" name="type" value="dhcp">
                 <br>

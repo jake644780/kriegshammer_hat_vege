@@ -50,14 +50,14 @@
             <input type="radio" name="nextHopType" value="port" checked>Port
           </label>
           <label>
-            <input type="radio" name="nextHopType" value="address">Address
+            <input type="radio" name="nextHopType" value="address">Cím
           </label>
         </fieldset>
         <br>
 
         <!-- Dynamic Next Hop Input -->
         <div id="nextHopInput">
-          <label for="portSelection">Next Hop Port:</label>
+          <label for="portSelection">következő ugrás port</label>
           <select id="ports" class="dropdown text-box" name="next">;
             <?php
             for ($i = 0; $i < sizeof($_SESSION["ports"]); $i++) echo '<option name="' . $_SESSION["ports"][$i] . '" value="' . $_SESSION["ports"][$i] . '">' . $_SESSION["ports"][$i] . '</option>';
@@ -98,7 +98,7 @@
     const renderNextHopInput = (type) => {
       if (type === 'port') {
         nextHopInputDiv.innerHTML = `
-        <label for="portSelection">Next Hop Port:</label>
+        <label for="portSelection">következő ugrás port:</label>
         <select id="ports" class="dropdown text-box" name ="next">;
             <?php
             for ($i = 0; $i < sizeof($_SESSION["ports"]); $i++) echo '<option name="' . $_SESSION["ports"][$i] . '" value="' . $_SESSION["ports"][$i] . '">' . $_SESSION["ports"][$i] . '</option>';
@@ -107,7 +107,7 @@
       `;
       } else if (type === 'address') {
         nextHopInputDiv.innerHTML = `
-        <label for="nextHopAddress">Next Hop Address:</label>
+        <label for="nextHopAddress">következő ugrás cím:</label>
         <input type="text" id="nextHopAddress" class="text-box" name="next" placeholder="Enter next hop address (e.g., 192.168.1.254)">
       `;
       }
